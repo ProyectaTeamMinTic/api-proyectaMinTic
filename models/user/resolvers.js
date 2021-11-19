@@ -1,1 +1,9 @@
-//Resolver para cada query y mutación
+//IMPORTS
+
+//RESOLVER{
+
+//  DEFINICION DE QUERY
+
+//  DEFINICIÓN DE MUTACIONES }
+
+//EXPORT

@@ -1,1 +1,9 @@
-//Definición de tipos, query y mutaciones
+//IMPORTS
+
+//DEFINICIÓN DE TIPOS
+
+//DEFINICION DE QUERY
+
+//DEFINICION DE MUTACIONES
+
+//EXPORTACIÓN DEL TIPO
