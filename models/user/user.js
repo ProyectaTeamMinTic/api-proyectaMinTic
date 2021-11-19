@@ -1,5 +1,6 @@
 //IMPORTS
-import { Schema, model } from "mongoose";
+import mongoose from "mongoose";
+const { Schema, model } = mongoose;
 // import { Enum_Rol, Enum_EstadoUsuario } from "./enums";
 
 //DEFINIR ESQUEMAS
