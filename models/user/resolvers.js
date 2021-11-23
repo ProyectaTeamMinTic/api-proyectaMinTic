@@ -2,8 +2,8 @@
 import { UserModel } from '../models/user.js'
 
 //RESOLVER{
-const resolversUser = {
-    
+const userResolvers = {
+
     //  DEFINICION DE QUERY
     Query: {
         Users: async (parent, args) => {
@@ -19,22 +19,22 @@ const resolversUser = {
     //  DEFINICIÓN DE MUTACIONES 
     Mutation: {
         creteUser: async (parent, args) => {
-            const userCreated = await UserModel.create({
+            const createdUser = await UserModel.create({
                 nombre: args.nombre,
                 apellido: args.apellido,
                 identificacion: args.identificacion,
                 correo: args.correo,
                 rol: args.rol,
             });
-
+            //validar dato por defecto
             if (Object.keys(args).includes('estado')) {
-                userCreated.estado = args.estado;
+                createdUser.estado = args.estado;
             }
 
-            return userCreated;
+            return createdUser;
         },
-        editUser: async (parent, args) => {
-            const editedUser = await UserModel.findByIdAndUpdate(
+        updateUser: async (parent, args) => {
+            const updatedUser = await UserModel.findByIdAndUpdate(
                 args._id,
                 {
                     nombre: args.nombre,
@@ -46,19 +46,19 @@ const resolversUser = {
                 { new: true }
             );
 
-            return editedUser;
+            return updatedUser;
         },
         deleteUser: async (parent, args) => {
             if (Object.keys(args).includes('_id')) {
-                const userDeleted = await UserModel.findOneAndDelete({ _id: args._id });
+                const deletedUser = await UserModel.findOneAndDelete({ _id: args._id });
                 return userDeleted;
             } else if (Object.keys(args).includes('correo')) {
-                const userDeleted = await UserModel.findOneAndDelete({ correo: args.correo });
-                return userDeleted;
+                const deletedUser = await UserModel.findOneAndDelete({ correo: args.correo });
+                return deletedUser;
             }
         },
     },
 };
 
 //EXPORT
-export { resolversUser };
+export { userResolvers };
