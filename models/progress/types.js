@@ -17,7 +17,7 @@ const progressTypes = gql`
 
     type Query {
         Progress: [Progress]
-        filterProgress(idProject: String!): [Progress]
+        filterProgress(_id: String!): [Progress]
     }
 
 //DEFINICION DE MUTACIONES

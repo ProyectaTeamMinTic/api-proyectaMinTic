@@ -16,7 +16,7 @@ const progressResolvers = {
     progressFilter: async (parent, args) => {
       //???
       const progressFiltered = await ProgressModel.find({
-        proyecto: args.idProject,
+        proyecto: args._id,
       })
         .populate("proyecto")
         .populate("creadoPor");
@@ -45,7 +45,7 @@ const progressResolvers = {
           proyecto: args.proyecto,
           creadoPor: args.creadoPor,
         },
-        { new: true }
+        { new: true } //Para que el campo se actualice después de aplicar el findByIdAndUpdate (y en general todas las funciones de update)
       );
       return updatedProgress;
     },
