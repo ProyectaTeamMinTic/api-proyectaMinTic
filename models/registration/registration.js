@@ -1,9 +1,41 @@
 //IMPORTS
+import mongoose from "mongoose";
+import { ProjectModel } from "../project/project.js";
+import { UserModel } from "../user/user.js";
+
+//DEFINIR VARIABLES
+const { Schema, model } = mongoose;
 
 //DEFINIR ESQUEMAS
-
-//METODOLOGIA 4 - VIRTUAL POPULATE (DESDE EL LADO 1 DE LA RELACIÓN)
+const registrationSchema = new Schema({
+  estado: {
+    type: String,
+    enum: ["ACEPTADA", "RECHAZADA", "PENDIENTE"],
+    default: "PENDIENTE",
+    required: true,
+  },
+  fechaIngreso: {
+    type: Date,
+    required: false,
+  },
+  fechaEgreso: {
+    type: Date,
+    required: false,
+  },
+  proyecto: {
+    type: Schema.Types.ObjectId,
+    ref: ProjectModel,
+    required: true,
+  },
+  estudiante: {
+    type: Schema.Types.ObjectId,
+    ref: UserModel,
+    required: true,
+  },
+});
 
 //DEFINIR MODELO DEL OBJETO
+const registrationModel = model("Registration", registrationSchema);
 
 //EXPORTACIÓN DEL MODELO
+export { registrationModel };
