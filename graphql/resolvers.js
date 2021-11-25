@@ -1,11 +1,11 @@
-import { resolversProject } from "../models/project/resolvers.js";
-import { resolversUser } from "../models/user/resolvers.js";
-import { resolversProgress } from "../models/progress/resolvers.js";
-import { resolversRegistration } from "../models/registration/resolvers.js";
+import { projectResolvers } from "../models/project/resolvers.js";
+import { userResolvers } from "../models/user/resolvers.js";
+import { progressResolvers } from "../models/progress/resolvers.js";
+import { registrationResolvers } from "../models/registration/resolvers.js";
 
 export const resolvers = [
-  resolversUser,
-  resolversProject,
-  resolversProgress,
-  resolversRegistration,
+  userResolvers,
+  projectResolvers,
+  progressResolvers,
+  registrationResolvers,
 ];
