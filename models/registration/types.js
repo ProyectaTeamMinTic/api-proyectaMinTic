@@ -2,7 +2,7 @@
 import { gql } from "apollo-server-express";
 
 //DEFINICIÓN DE TIPOS
-const typesRegistration = gql`
+const registrationTypes = gql`
   type Registration {
     _id: String !
     estado: Enum_Estadoregistration!
@@ -30,4 +30,4 @@ type Mutation {
 `;
 
 //EXPORTACIÓN DEL TIPO
-export { typesRegistration };
+export { registrationTypes };
