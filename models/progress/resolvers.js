@@ -5,9 +5,9 @@ import { ProgressModel } from "./progress.js";
 const progressResolvers = {
   //  DEFINICION DE QUERY
   Query: {
-    Progress: async (parent, args) => {
+    Progresses: async (parent, args) => {
       //????
-      const progress = await ProgressModel.find()
+      const Progresses = await ProgressModel.find()
         .populate("proyecto")
         .populate("creadoPor");
       return progress;
@@ -15,7 +15,7 @@ const progressResolvers = {
 
     progressFilter: async (parent, args) => {
       //???
-      const progressFiltered = await ProgressModel.find({
+      const progressFiltered = await ProgressModel.findById({
         proyecto: args._id,
       })
         .populate("proyecto")
