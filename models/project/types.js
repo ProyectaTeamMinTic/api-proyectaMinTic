@@ -18,7 +18,7 @@ const projectTypes = gql`
     tipo: Enum_TipoObjetivo!
   }
 
-  type Proyecto {
+  type Project {
     _id: ID!
     nombre: String!
     presupuesto: Float!
@@ -32,17 +32,17 @@ const projectTypes = gql`
     inscripciones: [Registration]
   }
 
-//DEFINICION DE QUERY
+#DEFINICION DE QUERY
 type Query {
     # ---------------------------------------------------------
     # Aqui se va a crear el Query de Proyecto
-    Proyectos: [Project]
+    Projects: [Project]
     # ---------------------------------------------------------
     # Aqui se va a consultar por un proyecto Específico utilizando el ID.
-    Proyecto(_id: String!): Project
+    Project(_id: String!): Project
   }
 
-//DEFINICION DE MUTACIONES
+#DEFINICION DE MUTACIONES
 type Mutation {
     # Esto es lo que se necesita para el proyecto
     # ---------------------------------------------------------
@@ -56,7 +56,7 @@ type Mutation {
       fase: Enum_FaseProyecto!
       lider: String! # Se asume que el usuario ya está creado
       objetivos: [crearObjetivo]
-    ): Projecto
+    ): Project
 
     updateProject(
       _id: String!

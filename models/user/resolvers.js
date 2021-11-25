@@ -50,7 +50,7 @@ const userResolvers = {
         deleteUser: async (parent, args) => {
             if (Object.keys(args).includes('_id')) {
                 const deletedUser = await UserModel.findOneAndDelete({ _id: args._id });
-                return userDeleted;
+                return deletedUser;
             } else if (Object.keys(args).includes('correo')) {
                 const deletedUser = await UserModel.findOneAndDelete({ correo: args.correo });
                 return deletedUser;

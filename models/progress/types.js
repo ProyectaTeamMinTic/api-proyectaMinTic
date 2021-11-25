@@ -13,14 +13,14 @@ const progressTypes = gql`
     creadoPor: User!
   }
 
-//DEFINICION DE QUERY
+#DEFINICION DE QUERY
 
     type Query {
-        Progress: [Progress]
-        filterProgress(_id: String!): [Progress]
+        Progresses: [Progress]
+        Progress(_id: String!): [Progress]
     }
 
-//DEFINICION DE MUTACIONES
+#DEFINICION DE MUTACIONES
 
     type Mutation {
         createProgress(

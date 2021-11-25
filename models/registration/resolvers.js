@@ -34,18 +34,18 @@ const registrationResolvers = {
       return registrationApproved;
     },
     //FECHA DE EGRESO CUANDO UN PROYECTO ESTA EN FASE DE TERMINADO, ADICIONAL 
-    updateEndDateRegistration: async (parent, args) => {
-      const updatedEndDateRegistration = await ProjectModel.findOne(
-        args.fase,
-        {
-          fase: "TERMINADO",
-          fechaEgreso: Date.now(),
-        },
+    // updateEndDateRegistration: async (parent, args) => {
+    //   const updatedEndDateRegistration = await ProjectModel.findOne(
+    //     args.fase,
+    //     {
+    //       fase: "TERMINADO",
+    //       fechaEgreso: Date.now(),
+    //     },
 
-        { new: true }
-      );
-      return updatedEndDateRegistration;
-    },
+    //     { new: true }
+    //   );
+    //   return updatedEndDateRegistration;
+    // },
   },
 };
 

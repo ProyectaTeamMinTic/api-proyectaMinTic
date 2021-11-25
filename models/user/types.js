@@ -15,13 +15,13 @@ type User {
     proyectos:[Project]
 }
 
-//DEFINICION DE QUERY
+#  DEFINICION DE QUERY
 type Query{
-    User: [User]
+    Users: [User]
     User(_id: String!): User
 }
 
-//DEFINICION DE MUTACIONES
+# DEFINICION DE MUTACIONES
 type Mutation {
     createUser(
       nombre: String!

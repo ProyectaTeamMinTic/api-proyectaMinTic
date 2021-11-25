@@ -7,20 +7,20 @@ const progressResolvers = {
   Query: {
     Progresses: async (parent, args) => {
       //????
-      const Progresses = await ProgressModel.find()
+      const progresses = await ProgressModel.find()
         .populate("proyecto")
         .populate("creadoPor");
-      return progress;
+      return progresses;
     },
 
-    progressFilter: async (parent, args) => {
+    Progress: async (parent, args) => {
       //???
-      const progressFiltered = await ProgressModel.findById({
+      const progress = await ProgressModel.findById({
         proyecto: args._id,
       })
         .populate("proyecto")
         .populate("creadoPor");
-      return progressFiltered;
+      return progress;
     },
   },
 

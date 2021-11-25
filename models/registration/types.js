@@ -5,25 +5,25 @@ import { gql } from "apollo-server-express";
 const registrationTypes = gql`
   type Registration {
     _id: String !
-    estado: Enum_Estadoregistration!
+    estado: Enum_EstadoInscripcion!
     fechaIngreso: Date
     fechaEgreso: Date
-    proyecto: Proyecto!
-    estudiante: Usuario!
+    proyecto: Project!
+    estudiante: User!
   }
 
-//DEFINICION DE QUERY
+#DEFINICION DE QUERY
 type Query {
-    Inscripciones: [Registration]
+    Registrations: [Registration]
   }
 
-//DEFINICION DE MUTACIONES
+#DEFINICION DE MUTACIONES
 type Mutation {
     createRegistration(
-      estado: Enum_Estadoregistration!
+      estado: Enum_EstadoInscripcion!
       proyecto: String!
       estudiante: String!
-    ): registration
+    ): Registration
 
     approveRegistration(id: String!): Registration
   }
