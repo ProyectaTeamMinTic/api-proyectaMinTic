@@ -11,6 +11,7 @@ type User {
     correo: String!
     rol: Enum_Rol!
     estado: Enum_EstadoUsuario
+    # virtual populate para traer array de proyectos
     proyectos:[Project]
 }
 

@@ -47,7 +47,7 @@ const userSchema = new Schema({
   }
 );
 
-//METODOLOGIA 4 - VIRTUAL POPULATE (DESDE EL LADO 1 DE LA RELACIÓN)
+//METODOLOGIA 4 - VIRTUAL POPULATE adicional (DESDE EL LADO 1 DE LA RELACIÓN) 
 userSchema.virtual("Project", {
   ref: "Project",
   localField: "_id",

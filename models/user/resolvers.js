@@ -8,6 +8,7 @@ const userResolvers = {
     Query: {
         Users: async (parent, args) => {
             console.log('parent usuario', parent);
+            //virtual populate para traer informacion de proyectos
             const users = await UserModel.find().populate('proyectos');
             return users;
         },

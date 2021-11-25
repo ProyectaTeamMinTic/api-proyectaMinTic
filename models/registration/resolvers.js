@@ -32,7 +32,8 @@ const registrationResolvers = {
         { new: true }
       );
       return registrationApproved;
-    }, //PENDIENTE FECHA DE EGRESO Y EN QUE LADO QUEDARÍA LA MUTACIÓN
+    },
+    //FECHA DE EGRESO CUANDO UN PROYECTO ESTA EN FASE DE TERMINADO, ADICIONAL 
     updateEndDateRegistration: async (parent, args) => {
       const updatedEndDateRegistration = await ProjectModel.findOne(
         args.fase,
