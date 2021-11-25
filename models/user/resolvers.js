@@ -1,5 +1,5 @@
 //IMPORTS
-import { UserModel } from '../models/user.js'
+import { UserModel } from './user.js'
 
 //RESOLVER{
 const userResolvers = {

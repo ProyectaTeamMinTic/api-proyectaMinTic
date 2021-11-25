@@ -4,7 +4,7 @@ import cors from "cors";
 import { ApolloServer } from "apollo-server-express";
 import dotenv from "dotenv";
 import conectarBD from "./db/db.js";
-import { tipos } from "./graphql/types.js";
+import { types } from "./graphql/types.js";
 import { resolvers } from "./graphql/resolvers.js";
 
 //VARIABLES DE ENTORNO
@@ -12,7 +12,7 @@ dotenv.config();
 
 //ACTIVACIÓN DE APOLLO COMO SERVIDOR DE GRAPHQL
 const server = new ApolloServer({
-  typeDefs: tipos, //types en lugar de tipos? 
+  typeDefs: types, //types en lugar de tipos? 
   resolvers: resolvers,
 });
 

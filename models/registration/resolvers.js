@@ -1,6 +1,6 @@
 //IMPORTS
 import { registrationModel } from "./registration.js";
-import { projectModel } from "../project/project.js";
+import { ProjectModel } from "../project/project.js";
 
 //RESOLVER{
 
@@ -34,7 +34,7 @@ const registrationResolvers = {
       return registrationApproved;
     }, //PENDIENTE FECHA DE EGRESO Y EN QUE LADO QUEDARÍA LA MUTACIÓN
     updateEndDateRegistration: async (parent, args) => {
-      const updatedEndDateRegistration = await projectModel.findOne(
+      const updatedEndDateRegistration = await ProjectModel.findOne(
         args.fase,
         {
           fase: "TERMINADO",
@@ -43,6 +43,7 @@ const registrationResolvers = {
 
         { new: true }
       );
+      return updatedEndDateRegistration;
     },
   },
 };
