@@ -1,9 +1,9 @@
 import { gql } from "apollo-server-express";
-// import { tiposEnums } from '../models/enums/tipos.js';
-import { typesUser } from "../models/user/types.js";
-import { typesProject } from "../models/project/types.js";
-import { typesProgress } from "../models/progress/types.js";
-import { typesRegistration } from "../models/registration/types.js";
+import { enumsType } from '../models/enums/types.js';
+import { userTypes } from "../models/user/types.js";
+import { projectTypes } from "../models/project/types.js";
+import { progressTypes } from "../models/progress/types.js";
+import { registrationTypes } from "../models/registration/types.js";
 
 const typesGlobales = gql`
   scalar Date
@@ -11,9 +11,9 @@ const typesGlobales = gql`
 
 export const types = [
   typesGlobales,
-  //   typesEnums,
-  typesUser,
-  typesProject,
-  typesProgress,
-  typesRegistration,
+  enumsTypes,
+  userTypes,
+  projectTypes,
+  progressTypes,
+  registrationTypes,
 ];

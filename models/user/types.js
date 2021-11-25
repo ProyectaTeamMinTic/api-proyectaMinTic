@@ -2,7 +2,7 @@
 import { gql } from 'apollo-server-express';
 
 //DEFINICIÓN DE TIPOS
-const typesUser = gql`
+const userTypes = gql`
 type User {
     _id: ID!
     nombre: String!
@@ -11,6 +11,7 @@ type User {
     correo: String!
     rol: Enum_Rol!
     estado: Enum_EstadoUsuario
+    proyectos:[Project]
 }
 
 //DEFINICION DE QUERY
@@ -30,7 +31,7 @@ type Mutation {
       estado: Enum_EstadoUsuario
     ): User
 
-    editUser(
+    updateUser(
       _id: String!
       nombre: String!
       apellido: String!
@@ -44,4 +45,4 @@ type Mutation {
 `;
 
 //EXPORTACIÓN DEL TIPO
-export { typesUser };
+export { userTypes };

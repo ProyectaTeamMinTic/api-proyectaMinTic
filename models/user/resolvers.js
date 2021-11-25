@@ -8,7 +8,7 @@ const userResolvers = {
     Query: {
         Users: async (parent, args) => {
             console.log('parent usuario', parent);
-            const users = await UserModel.find();
+            const users = await UserModel.find().populate('proyectos');
             return users;
         },
         User: async (parent, args) => {
@@ -18,7 +18,7 @@ const userResolvers = {
     },
     //  DEFINICIÓN DE MUTACIONES 
     Mutation: {
-        creteUser: async (parent, args) => {
+        createUser: async (parent, args) => {
             const createdUser = await UserModel.create({
                 nombre: args.nombre,
                 apellido: args.apellido,
@@ -30,7 +30,6 @@ const userResolvers = {
             if (Object.keys(args).includes('estado')) {
                 createdUser.estado = args.estado;
             }
-
             return createdUser;
         },
         updateUser: async (parent, args) => {
@@ -45,7 +44,6 @@ const userResolvers = {
                 },
                 { new: true }
             );
-
             return updatedUser;
         },
         deleteUser: async (parent, args) => {
