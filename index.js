@@ -12,7 +12,7 @@ dotenv.config();
 
 //ACTIVACIÓN DE APOLLO COMO SERVIDOR DE GRAPHQL
 const server = new ApolloServer({
-  typeDefs: tipos,
+  typeDefs: tipos, //types en lugar de tipos? 
   resolvers: resolvers,
 });
 
