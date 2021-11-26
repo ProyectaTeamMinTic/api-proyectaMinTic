@@ -1,16 +1,20 @@
 Sprint3
 PENDIENTES BACKEND
- 1. Completar schemas, querys y mutaciones de acuerdo con las hitorias de usuarios
+ 1. Completar schemas, querys y mutaciones de acuerdo con las hitorias de usuarios (LUNES)
     "Usuarios":Franklin
     "Proyecto":Mauricio
     "Avances":Mabel
- 2. Autenticacion:Franklin
+ 2. Autenticacion:Franklin (LUNES)
   "Codigo para types y resolvers de la carpeta graphql/auth"
   "carpeta usuario, en resolvers añadir autenticacion"
   "Carpeta utils archivo tokenUtils.js  añadir codigo"
   "Añadir en el index.js el codigo del token"
- 3. test all
-Sprint4
+ 3. test all(LUNES)
+Sprint4 (MIERCOLES) 
+ 1. index del privateLayout(pagina principal):CARLOS
+ 2. rutas app.jsx:Mauricio
+ 3. Codigo tablas: Mabel
+ 4. Login y Resgistro: Franklin
 
    
    

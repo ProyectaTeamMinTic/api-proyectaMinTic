@@ -55,6 +55,7 @@ userSchema.virtual("Project", {
   localField: "_id",
   foreignField: "lider",
 });
+//LIDER-INSCRIPCIONES(VIRTUAL POPULATE PARA listar LAS INSCRIPCIONES Y EDITAR EL ESTADO)
 //ESTUDIANTE-INSCRIPCIONES(VIRTUAL POPULATE para listar las inscripciones que tiene el estudiante)
 //PREGUNTA(POPULATE ANIDADO para ver los proyectos vinculado a las inscripciones)
 userSchema.virtual("registration", {
