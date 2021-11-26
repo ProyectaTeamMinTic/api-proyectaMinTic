@@ -22,6 +22,7 @@ const progressResolvers = {
         .populate("creadoPor");
       return progress;
     },
+    //HACE FALTA QUERY DE OBSERVACIONES A LOS AVANCES
   },
 
   //  DEFINICIÓN DE MUTACIONES }
@@ -57,6 +58,7 @@ const progressResolvers = {
         return deletedProgress;
       }
     },
+    //HACEN FALTA MUTACION PARA CREAR Y ACTUALIZAR OBSERVACIONES
   },
 };
 

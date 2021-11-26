@@ -48,11 +48,20 @@ const userSchema = new Schema({
 );
 
 //METODOLOGIA 4 - VIRTUAL POPULATE adicional (DESDE EL LADO 1 DE LA RELACIÓN) 
+
+//LIDER-PROYECTOS(virtual populate para traer los proyectos que tiene acargo el lider)
 userSchema.virtual("Project", {
   ref: "Project",
   localField: "_id",
-  foreignField: "nombre",//como traer varios foreignField de proyecto
+  foreignField: "lider",
 });
+//ESTUDIANTE-INSCRIPCIONES(VIRTUAL POPULATE para listar las inscripciones que tiene el estudiante)
+//PREGUNTA(POPULATE ANIDADO para ver los proyectos vinculado a las inscripciones)
+userSchema.virtual("registration", {
+  ref: "registration",
+
+})
+//ESTUDIANTE-AVANCES(VIRTUAL POPULATE para listar avances que tiene el estudiante)
 
 //DEFINIR MODELO DEL OBJETO
 const UserModel = model("User", userSchema);
