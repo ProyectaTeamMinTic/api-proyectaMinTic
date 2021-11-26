@@ -9,7 +9,7 @@ PENDIENTES BACKEND
   "carpeta usuario, en resolvers añadir autenticacion"
   "Carpeta utils archivo tokenUtils.js  añadir codigo"
   "Añadir en el index.js el codigo del token"
-
+ 3. test all
 Sprint4
 
    
