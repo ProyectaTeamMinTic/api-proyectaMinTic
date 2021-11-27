@@ -59,11 +59,16 @@ userSchema.virtual("Project", {
 //ESTUDIANTE-INSCRIPCIONES(VIRTUAL POPULATE para listar las inscripciones que tiene el estudiante)
 //PREGUNTA(POPULATE ANIDADO para ver los proyectos vinculado a las inscripciones)
 userSchema.virtual("registration", {
-  ref: "registration",
-
+  ref: "Registration",
+  localField: "_id",
+  foreignField: "estudiante"
 })
 //ESTUDIANTE-AVANCES(VIRTUAL POPULATE para listar avances que tiene el estudiante)
-
+userSchema.virtual("progress", {
+  ref: "Registration",
+  localField: "_id",
+  foreignField: "estudiante"
+})
 //DEFINIR MODELO DEL OBJETO
 const UserModel = model("User", userSchema);
 

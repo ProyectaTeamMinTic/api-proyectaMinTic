@@ -1,9 +1,8 @@
 //IMPORTS
 import { UserModel } from './user.js'
-
+import bcrypt from 'bcrypt';
 //RESOLVER{
 const userResolvers = {
-
     //  DEFINICION DE QUERY
     Query: {
         Users: async (parent, args) => {
