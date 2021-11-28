@@ -12,7 +12,7 @@ type User {
     rol: Enum_Rol!
     estado: Enum_EstadoUsuario
     # virtual populate para traer array de proyectos
-    proyectos:[Project]
+    # proyectos:[Project]
 }
 
 #  DEFINICION DE QUERY

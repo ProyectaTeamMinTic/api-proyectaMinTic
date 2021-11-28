@@ -6,13 +6,12 @@ const userResolvers = {
     //  DEFINICION DE QUERY
     Query: {
         Users: async (parent, args) => {
-            console.log('parent usuario', parent);
             //virtual populate para traer informacion de proyectos
-            const users = await UserModel.find().populate('proyectos');
+            const users = await UserModel.find();
             return users;
         },
         User: async (parent, args) => {
-            const user = await UserModel.findOne({ _id: args._id });
+            const user = await UserModel.findOne({ _id: args._id }).populate('projects');
             return user;
         },
     },
@@ -57,6 +56,5 @@ const userResolvers = {
         },
     },
 };
-
 //EXPORT
 export { userResolvers };
