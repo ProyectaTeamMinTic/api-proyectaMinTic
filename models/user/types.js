@@ -11,8 +11,10 @@ type User {
     correo: String!
     rol: Enum_Rol!
     estado: Enum_EstadoUsuario
-    # virtual populate para traer array de proyectos
-    # proyectos:[Project]
+    # virtual populate para traer array de proyectos de un lider
+    proyectos:[Project]
+    #Virtual populate para traer las inscripciones de un usuario
+
 }
 
 #  DEFINICION DE QUERY

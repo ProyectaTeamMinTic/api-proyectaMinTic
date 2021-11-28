@@ -45,21 +45,21 @@ const userSchema = new Schema({
 //METODOLOGIA 4 - VIRTUAL POPULATE adicional (DESDE EL LADO 1 DE LA RELACIÓN) 
 
 //LIDER-PROYECTOS(virtual populate para traer los proyectos que tiene acargo el lider)
-// userSchema.virtual("projects", {
-//   ref: "Project",
-//   localField: "_id",
-//   foreignField: "lider",
-// });
+userSchema.virtual("proyectos", {
+  ref: "Project",
+  localField: "_id",
+  foreignField: "lider",
+});
 //LIDER-INSCRIPCIONES(VIRTUAL POPULATE PARA listar LAS INSCRIPCIONES Y EDITAR EL ESTADO)
 //ESTUDIANTE-INSCRIPCIONES(VIRTUAL POPULATE para listar las inscripciones que tiene el estudiante)
 //PREGUNTA(POPULATE ANIDADO para ver los proyectos vinculado a las inscripciones)
-userSchema.virtual("registration", {
+userSchema.virtual("inscripciones", {
   ref: "Registration",
   localField: "_id",
   foreignField: "estudiante"
 })
 //ESTUDIANTE-AVANCES(VIRTUAL POPULATE para listar avances que tiene el estudiante)
-userSchema.virtual("progress", {
+userSchema.virtual("avances", {
   ref: "Registration",
   localField: "_id",
   foreignField: "estudiante"
