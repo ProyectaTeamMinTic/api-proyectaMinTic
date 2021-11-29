@@ -10,7 +10,7 @@ const tiposAutenticacion = gql`
   }
 #DEFINICION DE MUTACIONES
 type Mutation {
-    register(
+    registro(
       nombre: String!
       apellido: String!
       identificacion: String!

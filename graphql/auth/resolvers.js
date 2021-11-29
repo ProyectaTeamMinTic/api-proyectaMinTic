@@ -6,10 +6,10 @@ import { generateToken } from '../../utils/tokenUtils.js';
 const resolversAutenticacion = {
   //DEFINICION DE MUTACIONES
   Mutation: {
-    register: async (parent, args) => {
+    registro: async (parent, args) => {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(args.password, salt);
-      const createdUser = await UserModel.create({
+      const usuarioCreado = await UserModel.create({
         nombre: args.nombre,
         apellido: args.apellido,
         identificacion: args.identificacion,
@@ -17,15 +17,15 @@ const resolversAutenticacion = {
         rol: args.rol,
         password: hashedPassword,
       });
-      console.log('usuario creado', createdUser);
+      console.log('usuario creado', usuarioCreado);
       return {
         token: generateToken({
-          _id: createdUser._id,
-          nombre: createdUser.nombre,
-          apellido: createdUser.apellido,
-          identificacion: createdUser.identificacion,
-          correo: createdUser.correo,
-          rol: createdUser.rol,
+          _id: usuarioCreado._id,
+          nombre: usuarioCreado.nombre,
+          apellido: usuarioCreado.apellido,
+          identificacion: usuarioCreado.identificacion,
+          correo: usuarioCreado.correo,
+          rol: usuarioCreado.rol,
         }),
       };
     },
