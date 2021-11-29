@@ -60,7 +60,7 @@ userSchema.virtual("proyectos", {
 userSchema.virtual("inscripciones", {
   ref: "Registration",
   localField: "_id",
-  foreignField: "estudiante"
+  foreignField: "estado"
 })
 //ESTUDIANTE-AVANCES(VIRTUAL POPULATE para listar avances que tiene el estudiante)
 userSchema.virtual("avances", {

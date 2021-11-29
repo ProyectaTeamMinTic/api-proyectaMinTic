@@ -10,7 +10,7 @@ const projectResolvers = {
     Projects: async (parent, args) => {
       const projects = await ProjectModel.find()
         .populate("lider")
-        .populate("avances")
+        // .populate("avances")
         .populate("inscripciones");
       return projects;
     },
@@ -44,26 +44,27 @@ const projectResolvers = {
       if (Object.keys(args).includes("fase")) {
         createdProject.fase = args.fase;
       }
-
       return createdProject;
     },
 
     updateProject: async (parent, args) => {
+      // const updatedProject = await ProjectModel.findByIdAndUpdate(
+      //   args._id,
+      //   {
+      //     nombre: args.nombre,
+      //     presupuesto: args.presupuesto,
+      //     fechaInicio: args.fechaInicio,
+      //     fechaFin: args.fechaFin,
+      //     estado: args.estado,
+      //     fase: args.fase,
+      //     lider: args.lider,
+      //     objetivos: args.objetivos,
+      //   },
       const updatedProject = await ProjectModel.findByIdAndUpdate(
         args._id,
-        {
-          nombre: args.nombre,
-          presupuesto: args.presupuesto,
-          fechaInicio: args.fechaInicio,
-          fechaFin: args.fechaFin,
-          estado: args.estado,
-          fase: args.fase,
-          lider: args.lider,
-          objetivos: args.objetivos,
-        },
+        { ...args.campos },
         { new: true }
       );
-
       return updatedProject;
     },
 
@@ -74,6 +75,21 @@ const projectResolvers = {
         });
         return deletedProject;
       }
+    },
+
+    createObjective: async (parent, args) => {
+      const projectWithObjective = await ProjectModel.findByIdAndUpdate(
+        args.idProyecto,
+        {
+          $addToSet: {
+            objetivos: {
+              ...args.campos,
+            },
+          },
+        },
+        { new: true }
+      );
+      return projectWithObjective;
     },
 
     // ---------------------------------------------------------
