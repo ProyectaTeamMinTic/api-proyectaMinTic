@@ -3,7 +3,6 @@ import { gql } from "apollo-server-express";
 
 //DEFINICIÓN DE TIPOS E INPUTS
 const projectTypes = gql`
-
   # ---------------------------------------------------------
   # Se va crear la definición de tipos para proyecto en GraphQL
 
@@ -16,6 +15,21 @@ const projectTypes = gql`
   input crearObjetivo {
     descripcion: String!
     tipo: Enum_TipoObjetivo!
+  }
+
+  input camposObjetivo {
+    descripcion: String!
+    tipo: Enum_TipoObjetivo!
+  }
+
+  input camposProyecto {
+    nombre: String
+    presupuesto: Float
+    fechaInicio: Date
+    fechaFin: Date
+    estado: Enum_EstadoProyecto
+    fase: Enum_FaseProyecto
+    lider: String
   }
 
   type Project {
@@ -32,8 +46,8 @@ const projectTypes = gql`
     inscripciones: [Registration]
   }
 
-#DEFINICION DE QUERY
-type Query {
+  #DEFINICION DE QUERY
+  type Query {
     # ---------------------------------------------------------
     # Aqui se va a crear el Query de Proyecto
     Projects: [Project]
@@ -42,8 +56,8 @@ type Query {
     Project(_id: String!): Project
   }
 
-#DEFINICION DE MUTACIONES
-type Mutation {
+  #DEFINICION DE MUTACIONES
+  type Mutation {
     # Esto es lo que se necesita para el proyecto
     # ---------------------------------------------------------
     # Aqui se van a crear las mutaciones para el proyecto
@@ -58,20 +72,24 @@ type Mutation {
       objetivos: [crearObjetivo]
     ): Project
 
-    updateProject(
-      _id: String!
-      nombre: String!
-      presupuesto: Float!
-      fechaInicio: Date!
-      fechaFin: Date!
-      estado: Enum_EstadoProyecto!
-      fase: Enum_FaseProyecto!
-      lider: String! # Se asume que el usuario ya está creado
-      objetivos: [crearObjetivo]
-    ): Project
+    # updateProject(
+    #   _id: String!
+    #   nombre: String!
+    #   presupuesto: Float!
+    #   fechaInicio: Date!
+    #   fechaFin: Date!
+    #   estado: Enum_EstadoProyecto!
+    #   fase: Enum_FaseProyecto!
+    #   lider: String! # Se asume que el usuario ya está creado
+    #   objetivos: [crearObjetivo]
+    # ): Project
+
+    updateProject(_id: String!, campos: camposProyecto!): Project
 
     deleteProject(_id: String): Project
     # ---------------------------------------------------------
+
+    createObjective(idProyecto: String!, campos: camposObjetivo!): Project
   }
 `;
 

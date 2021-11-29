@@ -60,11 +60,11 @@ const projectSchema = new Schema(
 
 //METODOLOGIA 4 - VIRTUAL POPULATE (DESDE EL LADO 1 DE LA RELACIÓN)
 //PROYECTO-AVANCES DE ESTUDIANTES(VIRTUAL POPULATE para listar los avances que tiene un proyecto)
-projectSchema.virtual("avances", {
-  ref: "Progress",
-  localField: "_id",
-  foreignField: "proyecto",
-});
+// projectSchema.virtual("avances", {
+//   ref: "Progress",
+//   localField: "_id",
+//   foreignField: "proyecto",
+// });
 //PROYECTO-INSCRIPCIONES DE ESTUDIANTES (VIRTUAL POPULATE para listar que inscripciones tiene un proyecto)
 //PREGUNTA(POPULATE ANIDADO para ver los estudientes que hicieron las inscripciones)
 projectSchema.virtual("inscripciones", {
