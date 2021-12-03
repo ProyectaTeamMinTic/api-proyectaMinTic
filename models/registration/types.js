@@ -15,6 +15,7 @@ const registrationTypes = gql`
 #DEFINICION DE QUERY
 type Query {
     Registrations: [Registration]
+    inscripcionesConProyectoYEstudiante(estado: Enum_EstadoInscripcion): [Registration]
   }
 
 #DEFINICION DE MUTACIONES

@@ -1,6 +1,5 @@
 //IMPORTS
 import { ProjectModel } from "./project.js";
-import { UserModel } from "../user/user.js";
 import { registrationModel } from "../registration/registration.js"
 //RESOLVER{
 const projectResolvers = {

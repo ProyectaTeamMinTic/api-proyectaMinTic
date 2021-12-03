@@ -1,6 +1,5 @@
 //IMPORTS
 import { registrationModel } from "./registration.js";
-import { ProjectModel } from "../project/project.js";
 
 //RESOLVER{
 
@@ -10,6 +9,14 @@ const registrationResolvers = {
     Registrations: async (parent, args) => {
       const registrations = await registrationModel.find();
       return registrations;
+    },
+    inscripcionesConProyectoYEstudiante: async (parent, args) => {
+      const inscripcionesConProyectoYEstudiante = await registrationModel.find(
+        // {
+        //   estado: 'ACEPTADA'
+        // }
+      ).populate('estudiante').populate('proyecto');
+      return inscripcionesConProyectoYEstudiante;
     },
   },
   //  DEFINICIÓN DE MUTACIONES
