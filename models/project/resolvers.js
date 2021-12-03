@@ -92,6 +92,22 @@ const projectResolvers = {
       return projectWithObjective;
     },
 
+    updateObjective: async (parent, args) => {
+      const projectWithObjectiveUpdated = await ProjectModel.findByIdAndUpdate(
+        args.idProyecto,
+        {
+          $set: {
+            [`objetivos.${args.indexObjetivo}.descripcion`]:
+              args.campos.descripcion,
+            [`objetivos.${args.indexObjetivo}.tipo`]:
+              args.campos.tipo,
+          },
+        },
+        { new: true }
+      );
+      return projectWithObjectiveUpdated;
+    },
+
     // ---------------------------------------------------------
   },
 };

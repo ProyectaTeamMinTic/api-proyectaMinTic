@@ -27,7 +27,8 @@ const registrationResolvers = {
         args.id,
         {
           estado: "ACEPTADO",
-          fechaIngreso: Date.now(),
+          fechaIngreso: args.Date.now(),
+          //fechaFin:new Date().toISOString().split("T")[0]
         },
         { new: true }
       );

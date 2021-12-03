@@ -28,6 +28,7 @@ const projectTypes = gql`
     presupuesto: Float
     fechaInicio: Date
     fechaFin: Date
+    #fechaFin:new Date().toISOString().split("T")[0]
     estado: Enum_EstadoProyecto
     fase: Enum_FaseProyecto
     lider: String
@@ -90,6 +91,8 @@ type Mutation {
     deleteProject(_id: String): Project
     # ---------------------------------------------------------
     createObjective(idProyecto: String!, campos: camposObjetivo!): Project
+
+    updateObjective(idProyecto: String!, indexObjetivo: Int!, campos: camposObjetivo!): Project
   }
 `;
 
