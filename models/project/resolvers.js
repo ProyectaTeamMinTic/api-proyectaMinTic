@@ -1,8 +1,14 @@
 //IMPORTS
 import { ProjectModel } from "./project.js";
-
+import { UserModel } from "../user/user.js";
+import { registrationModel } from "../registration/registration.js"
 //RESOLVER{
 const projectResolvers = {
+  Project: {
+    inscripciones: async (parent, args) => {
+      return registrationModel.find({ proyecto: parent._id })
+    },
+  },
   //  DEFINICION DE QUERIES
   Query: {
     // ---------------------------------------------------------
@@ -10,12 +16,12 @@ const projectResolvers = {
     Projects: async (parent, args) => {
       const projects = await ProjectModel.find()
         .populate("lider")
-        // .populate("avances")
-        .populate("inscripciones");
+      // .populate("avances")
+      // .populate("inscripciones");
       return projects;
     },
     Project: async (parent, args) => {
-      const project = await ProjectModel.findOne({ _id: args._id });
+      const project = await ProjectModel.findOne({ _id: args._id }).populate('lider');
       return project;
     },
     // ---------------------------------------------------------
