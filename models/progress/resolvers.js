@@ -39,7 +39,7 @@ const progressResolvers = {
 
     updateProgress: async (parents, args) => {
       const updatedProgress = await ProgressModel.findByIdAndUpdate(
-        args_id,
+        args._id,
         {
           fecha: args.fecha, //FECHA AUTOMATICA
           descripcion: args.descripcion,

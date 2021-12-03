@@ -14,6 +14,11 @@ const userResolvers = {
             const user = await UserModel.findOne({ _id: args._id }).populate('proyectos');
             return user;
         },
+        User: async (parent, args) => {
+            //virtual populate para traer informacion de proyectos de un lider
+            const user = await UserModel.findOne({ _id: args._id }).populate('inscripciones');
+            return user;
+        },
     },
     //  DEFINICIÓN DE MUTACIONES 
     Mutation: {
