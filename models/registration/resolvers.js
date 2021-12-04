@@ -23,7 +23,7 @@ const registrationResolvers = {
   Mutation: {
     createRegistration: async (parent, args) => {
       const registrationCreated = await registrationModel.create({
-        estado: args.estado,
+        // estado: args.estado,
         proyecto: args.proyecto,
         estudiante: args.estudiante,
       });
@@ -31,10 +31,10 @@ const registrationResolvers = {
     },
     approveRegistration: async (parent, args) => {
       const registrationApproved = await registrationModel.findByIdAndUpdate(
-        args.id,
+        args._id,
         {
-          estado: "ACEPTADO",
-          fechaIngreso: args.Date.now(),
+          estado: args.estado,
+          // fechaIngreso: (new Date()).toISOString().split("T")[0],
           //fechaFin:new Date().toISOString().split("T")[0]
         },
         { new: true }
