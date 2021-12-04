@@ -26,6 +26,10 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  password: {
+    type: String,
+    required: true,
+  },
   apellido: {
     type: String,
     required: true,
@@ -40,17 +44,12 @@ const userSchema = new Schema({
     enum: ['PENDIENTE', 'AUTORIZADO', 'NO_AUTORIZADO'],
     default: 'PENDIENTE',
   },
-},
-  {
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true },
-  }
-);
+});
 
 //METODOLOGIA 4 - VIRTUAL POPULATE adicional (DESDE EL LADO 1 DE LA RELACIÓN) 
 
 //LIDER-PROYECTOS(virtual populate para traer los proyectos que tiene acargo el lider)
-userSchema.virtual("Project", {
+userSchema.virtual("proyectos", {
   ref: "Project",
   localField: "_id",
   foreignField: "lider",
@@ -58,12 +57,17 @@ userSchema.virtual("Project", {
 //LIDER-INSCRIPCIONES(VIRTUAL POPULATE PARA listar LAS INSCRIPCIONES Y EDITAR EL ESTADO)
 //ESTUDIANTE-INSCRIPCIONES(VIRTUAL POPULATE para listar las inscripciones que tiene el estudiante)
 //PREGUNTA(POPULATE ANIDADO para ver los proyectos vinculado a las inscripciones)
-userSchema.virtual("registration", {
-  ref: "registration",
-
+userSchema.virtual("inscripciones", {
+  ref: "Registration",
+  localField: "_id",
+  foreignField: "estudiante"
 })
 //ESTUDIANTE-AVANCES(VIRTUAL POPULATE para listar avances que tiene el estudiante)
-
+userSchema.virtual("avances", {
+  ref: "Progress",
+  localField: "_id",
+  foreignField: "creadoPor"
+})
 //DEFINIR MODELO DEL OBJETO
 const UserModel = model("User", userSchema);
 

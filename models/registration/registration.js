@@ -12,7 +12,6 @@ const registrationSchema = new Schema({
     type: String,
     enum: ["ACEPTADA", "RECHAZADA", "PENDIENTE"],
     default: "PENDIENTE",
-    required: true,
   },
   fechaIngreso: {
     type: Date,

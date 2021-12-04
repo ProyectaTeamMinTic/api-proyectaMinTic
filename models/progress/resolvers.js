@@ -39,7 +39,7 @@ const progressResolvers = {
 
     updateProgress: async (parents, args) => {
       const updatedProgress = await ProgressModel.findByIdAndUpdate(
-        args_id,
+        args._id,
         {
           fecha: args.fecha, //FECHA AUTOMATICA
           descripcion: args.descripcion,
@@ -58,7 +58,22 @@ const progressResolvers = {
         return deletedProgress;
       }
     },
-    //HACEN FALTA MUTACION PARA CREAR Y ACTUALIZAR OBSERVACIONES
+    //HACE FALTA MUTACION PARA QUE EL LIDER PUEDA AGREGAR OBSERVACIONES A LOS AVANCES. (HU_18)
+    //Para que esta operación solo pueda ser ejecutada por el líder uso PrivateComponent en el front
+    createObservation: async (parent, args) => {
+      const progressWithObjective = await ProgressModel.findByIdAndUpdate(
+        args._Id,
+        {
+          $addToSet: {
+            Observacion: {
+              descripcion: args.descripcion,
+            },
+          },
+        },
+        { new: true }
+      );
+      return progressWithObjective;
+    },
   },
 };
 

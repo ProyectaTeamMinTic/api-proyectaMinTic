@@ -17,6 +17,22 @@ const projectTypes = gql`
     tipo: Enum_TipoObjetivo!
   }
 
+   input camposObjetivo {
+    descripcion: String!
+    tipo: Enum_TipoObjetivo!
+  }
+
+  input camposProyecto {
+    nombre: String
+    presupuesto: Float
+    fechaInicio: Date
+    fechaFin: Date
+    #fechaFin:new Date().toISOString().split("T")[0]
+    estado: Enum_EstadoProyecto
+    fase: Enum_FaseProyecto
+    lider: String
+  }
+
   type Project {
     _id: ID!
     nombre: String!
@@ -57,20 +73,25 @@ const projectTypes = gql`
       objetivos: [crearObjetivo]
     ): Project
 
-    updateProject(
-      _id: String!
-      nombre: String!
-      presupuesto: Float!
-      fechaInicio: Date!
-      fechaFin: Date!
-      estado: Enum_EstadoProyecto!
-      fase: Enum_FaseProyecto!
-      lider: String! # Se asume que el usuario ya está creado
-      objetivos: [crearObjetivo]
-    ): Project
+    # updateProject(
+    #   _id: String!
+    #   nombre: String!
+    #   presupuesto: Float!
+    #   fechaInicio: Date!
+    #   fechaFin: Date!
+    #   estado: Enum_EstadoProyecto!
+    #   fase: Enum_FaseProyecto!
+    #   lider: String! # Se asume que el usuario ya está creado
+    #   objetivos: [crearObjetivo]
+    # ): Project
+
+    updateProject(_id: String!, campos: camposProyecto!): Project
 
     deleteProject(_id: String): Project
     # ---------------------------------------------------------
+    createObjective(idProyecto: String!, campos: camposObjetivo!): Project
+
+    updateObjective(idProyecto: String!, indexObjetivo: Int!, campos: camposObjetivo!): Project
   }
 `;
 

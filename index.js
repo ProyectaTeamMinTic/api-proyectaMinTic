@@ -6,15 +6,34 @@ import dotenv from "dotenv";
 import conectarBD from "./db/db.js";
 import { types } from "./graphql/types.js";
 import { resolvers } from "./graphql/resolvers.js";
-//import { validateToken } from './utils/tokenUtils.js';
+import { validateToken } from './utils/tokenUtils.js';
 
 //VARIABLES DE ENTORNO
 dotenv.config();
+//OBTENER TOKEN , VALIDAR TOKEN
+const getUserData = (token) => {
+  const verificacion = validateToken(token.split(' ')[1]);
+  if (verificacion.data) {
+    return verificacion.data;
+  } else {
+    return null;
+  }
+};
 
 //ACTIVACIÓN DE APOLLO COMO SERVIDOR DE GRAPHQL
 const server = new ApolloServer({
   typeDefs: types, //types en lugar de tipos? 
   resolvers: resolvers,
+  context: ({ req }) => {
+    const token = req.headers?.authorization ?? null;
+    if (token) {
+      const userData = getUserData(token);
+      if (userData) {
+        return { userData };
+      }
+    }
+    return null;
+  },
 });
 
 //ACTIVACIÓN DE EXPRESS

@@ -42,9 +42,15 @@ const progressTypes = gql`
         deleteProgress(
             _id: String)
             : Progress
+
+        createObservation(
+           _id: String!
+          Observacion: String!
+          )
+          : Progress
     }
   `;
+//*reateObservacion devuelve un Avance (Progress) con la observación correspondiente, por dentro.
 
 //EXPORTACIÓN DEL TIPO
-
 export { progressTypes };

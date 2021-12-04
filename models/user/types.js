@@ -11,8 +11,10 @@ type User {
     correo: String!
     rol: Enum_Rol!
     estado: Enum_EstadoUsuario
-    # virtual populate para traer array de proyectos
+    # virtual populate para traer array de proyectos de un lider
     proyectos:[Project]
+    #Virtual populate para traer las inscripciones de un usuario
+    inscripciones:[Registration]
 }
 
 #  DEFINICION DE QUERY
@@ -30,6 +32,7 @@ type Mutation {
       correo: String!
       rol: Enum_Rol!
       estado: Enum_EstadoUsuario
+      password: String!
     ): User
 
     updateUser(

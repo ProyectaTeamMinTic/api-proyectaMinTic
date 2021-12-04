@@ -67,11 +67,16 @@ projectSchema.virtual("avances", {
 });
 //PROYECTO-INSCRIPCIONES DE ESTUDIANTES (VIRTUAL POPULATE para listar que inscripciones tiene un proyecto)
 //PREGUNTA(POPULATE ANIDADO para ver los estudientes que hicieron las inscripciones)
-projectSchema.virtual("inscripciones", {
-  ref: "Registration",
-  localField: "_id",
-  foreignField: "proyecto",
-});
+// projectSchema.virtual("inscripciones", {
+//   ref: "Registration",
+//   localField: "_id",
+//   foreignField: "proyecto",
+// });
+// projectSchema.virtual("lider", {
+//   ref: "User",
+//   localField: "_id",
+//   foreignField: "proyectos",
+// });
 
 
 //DEFINIR MODELO DEL OBJETO
