@@ -3,7 +3,6 @@ import { gql } from "apollo-server-express";
 
 //DEFINICIÓN DE TIPOS E INPUTS
 const projectTypes = gql`
-
   # ---------------------------------------------------------
   # Se va crear la definición de tipos para proyecto en GraphQL
 
@@ -32,8 +31,8 @@ const projectTypes = gql`
     inscripciones: [Registration]
   }
 
-#DEFINICION DE QUERY
-type Query {
+  #DEFINICION DE QUERY
+  type Query {
     # ---------------------------------------------------------
     # Aqui se va a crear el Query de Proyecto
     Projects: [Project]
@@ -42,8 +41,8 @@ type Query {
     Project(_id: String!): Project
   }
 
-#DEFINICION DE MUTACIONES
-type Mutation {
+  #DEFINICION DE MUTACIONES
+  type Mutation {
     # Esto es lo que se necesita para el proyecto
     # ---------------------------------------------------------
     # Aqui se van a crear las mutaciones para el proyecto
