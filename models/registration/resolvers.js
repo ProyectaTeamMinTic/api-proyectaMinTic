@@ -11,11 +11,14 @@ const registrationResolvers = {
       return registrations;
     },
     inscripcionesConProyectoYEstudiante: async (parent, args) => {
-      const inscripcionesConProyectoYEstudiante = await registrationModel.find(
+      const inscripcionesConProyectoYEstudiante = await registrationModel
+        .find
         // {
         //   estado: 'ACEPTADA'
         // }
-      ).populate('estudiante').populate('proyecto');
+        ()
+        .populate("estudiante")
+        .populate("proyecto");
       return inscripcionesConProyectoYEstudiante;
     },
   },
@@ -41,7 +44,7 @@ const registrationResolvers = {
       );
       return registrationApproved;
     },
-    //FECHA DE EGRESO CUANDO UN PROYECTO ESTA EN FASE DE TERMINADO, ADICIONAL 
+    //FECHA DE EGRESO CUANDO UN PROYECTO ESTA EN FASE DE TERMINADO, ADICIONAL
     // updateEndDateRegistration: async (parent, args) => {
     //   const updatedEndDateRegistration = await ProjectModel.findOne(
     //     args.fase,
