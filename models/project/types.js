@@ -17,7 +17,7 @@ const projectTypes = gql`
     tipo: Enum_TipoObjetivo!
   }
 
-   input camposObjetivo {
+  input camposObjetivo {
     descripcion: String!
     tipo: Enum_TipoObjetivo!
   }
@@ -91,7 +91,11 @@ const projectTypes = gql`
     # ---------------------------------------------------------
     createObjective(idProyecto: String!, campos: camposObjetivo!): Project
 
-    updateObjective(idProyecto: String!, indexObjetivo: Int!, campos: camposObjetivo!): Project
+    updateObjective(
+      idProyecto: String!
+      indexObjetivo: Int!
+      campos: camposObjetivo!
+    ): Project
   }
 `;
 
