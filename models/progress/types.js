@@ -57,6 +57,8 @@ const progressTypes = gql`
       indexObservacion: Int!
       descripcion: String!
     ): Progress
+
+    deleteObservation(idAvance: String!, idObservacion: String!): Progress
   }
 `;
 //*CreateObservacion devuelve un Avance (Progress) con la observación correspondiente, por dentro.

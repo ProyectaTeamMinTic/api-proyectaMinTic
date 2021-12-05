@@ -92,6 +92,22 @@ const progressResolvers = {
         );
       return progressWithObservationUpdated;
     },
+
+    deleteObservation: async (parent, args) => {
+      const projectWithObservationDeleted =
+        await ProgressModel.findByIdAndUpdate(
+          { _id: args.idAvance },
+          {
+            $pull: {
+              observaciones: {
+                _id: args.idObservacion,
+              },
+            },
+          },
+          { new: true }
+        );
+      return projectWithObservationDeleted;
+    },
   },
 };
 
