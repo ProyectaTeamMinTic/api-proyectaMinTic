@@ -3,6 +3,11 @@ import { UserModel } from './user.js'
 import bcrypt from 'bcrypt';
 //RESOLVER{
 const userResolvers = {
+    User: {
+        inscripciones: async (parent, args) => {
+            return registrationModel.find({ estado: parent.estado, proyecto: parent.Project, estudiante: parent.User })
+        },
+    },
     //  DEFINICION DE QUERY
     Query: {
         Users: async (parent, args) => {
@@ -14,6 +19,11 @@ const userResolvers = {
             const user = await UserModel.findOne({ _id: args._id }).populate('proyectos');
             return user;
         },
+        // User: async (parent, args) => {
+        //     //virtual populate para traer informacion de proyectos de un lider
+        //     const user = await UserModel.findOne({ _id: args._id }).populate('inscripciones');
+        //     return user;
+        // },
     },
     //  DEFINICIÓN DE MUTACIONES 
     Mutation: {

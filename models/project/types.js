@@ -17,7 +17,7 @@ const projectTypes = gql`
     tipo: Enum_TipoObjetivo!
   }
 
-  input camposObjetivo {
+   input camposObjetivo {
     descripcion: String!
     tipo: Enum_TipoObjetivo!
   }
@@ -27,6 +27,7 @@ const projectTypes = gql`
     presupuesto: Float
     fechaInicio: Date
     fechaFin: Date
+    #fechaFin:new Date().toISOString().split("T")[0]
     estado: Enum_EstadoProyecto
     fase: Enum_FaseProyecto
     lider: String
@@ -88,8 +89,9 @@ const projectTypes = gql`
 
     deleteProject(_id: String): Project
     # ---------------------------------------------------------
-
     createObjective(idProyecto: String!, campos: camposObjetivo!): Project
+
+    updateObjective(idProyecto: String!, indexObjetivo: Int!, campos: camposObjetivo!): Project
   }
 `;
 

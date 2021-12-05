@@ -14,7 +14,7 @@ type User {
     # virtual populate para traer array de proyectos de un lider
     proyectos:[Project]
     #Virtual populate para traer las inscripciones de un usuario
-
+    inscripciones:[Registration]
 }
 
 #  DEFINICION DE QUERY

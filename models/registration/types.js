@@ -15,17 +15,19 @@ const registrationTypes = gql`
 #DEFINICION DE QUERY
 type Query {
     Registrations: [Registration]
+    inscripcionesConProyectoYEstudiante(estado: Enum_EstadoInscripcion): [Registration]
   }
 
 #DEFINICION DE MUTACIONES
 type Mutation {
     createRegistration(
-      estado: Enum_EstadoInscripcion!
+      # estado: Enum_EstadoInscripcion!
       proyecto: String!
       estudiante: String!
     ): Registration
 
-    approveRegistration(id: String!): Registration
+    approveRegistration(_id: String!
+    estado: Enum_EstadoInscripcion): Registration
   }
 `;
 

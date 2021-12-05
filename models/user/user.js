@@ -64,9 +64,9 @@ userSchema.virtual("inscripciones", {
 })
 //ESTUDIANTE-AVANCES(VIRTUAL POPULATE para listar avances que tiene el estudiante)
 userSchema.virtual("avances", {
-  ref: "Registration",
+  ref: "Progress",
   localField: "_id",
-  foreignField: "estudiante"
+  foreignField: "creadoPor"
 })
 //DEFINIR MODELO DEL OBJETO
 const UserModel = model("User", userSchema);
