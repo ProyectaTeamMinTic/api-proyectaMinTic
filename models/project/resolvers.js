@@ -1,11 +1,11 @@
 //IMPORTS
 import { ProjectModel } from "./project.js";
-import { registrationModel } from "../registration/registration.js"
+import { registrationModel } from "../registration/registration.js";
 //RESOLVER{
 const projectResolvers = {
   Project: {
     inscripciones: async (parent, args) => {
-      return registrationModel.find({ proyecto: parent._id })
+      return registrationModel.find({ proyecto: parent._id });
     },
   },
   //  DEFINICION DE QUERIES
@@ -13,14 +13,15 @@ const projectResolvers = {
     // ---------------------------------------------------------
     // Aqui se va a crear el Query de Proyecto para consultar todos los proyectos, se deben crear por supuesto muchas más de acuerdo a los requisitos.
     Projects: async (parent, args) => {
-      const projects = await ProjectModel.find()
-        .populate("lider")
+      const projects = await ProjectModel.find().populate("lider");
       // .populate("avances")
       // .populate("inscripciones");
       return projects;
     },
     Project: async (parent, args) => {
-      const project = await ProjectModel.findOne({ _id: args._id }).populate('lider');
+      const project = await ProjectModel.findOne({ _id: args._id }).populate(
+        "lider"
+      );
       return project;
     },
     // ---------------------------------------------------------
@@ -35,10 +36,10 @@ const projectResolvers = {
       const createdProject = await ProjectModel.create({
         nombre: args.nombre,
         presupuesto: args.presupuesto,
-        fechaInicio: args.fechaInicio,
-        fechaFin: args.fechaFin,
-        estado: args.estado,
-        fase: args.fase,
+        // fechaInicio: args.fechaInicio,
+        // fechaFin: args.fechaFin,
+        // estado: args.estado,
+        // fase: args.fase,
         lider: args.lider,
         objetivos: args.objetivos,
       });
@@ -53,24 +54,28 @@ const projectResolvers = {
     },
 
     updateProject: async (parent, args) => {
-      // const updatedProject = await ProjectModel.findByIdAndUpdate(
-      //   args._id,
-      //   {
-      //     nombre: args.nombre,
-      //     presupuesto: args.presupuesto,
-      //     fechaInicio: args.fechaInicio,
-      //     fechaFin: args.fechaFin,
-      //     estado: args.estado,
-      //     fase: args.fase,
-      //     lider: args.lider,
-      //     objetivos: args.objetivos,
-      //   },
       const updatedProject = await ProjectModel.findByIdAndUpdate(
         args._id,
         { ...args.campos },
         { new: true }
       );
       return updatedProject;
+    },
+
+    //mutacion para actualizar el estado del proyecto y establecer fechas automaticas
+    updateProjectStateAndSetDate: async (parent, args) => {
+      const updatedProjectStateAndSetDate = await ProjectModel.findByIdAndUpdate(
+        args._id,
+        {
+          estado: args.estado,
+        },
+        { new: true }
+      );
+      if (Object.keys(args).includes('estado') === 'ACTIVO') {
+        updatedProjectStateAndSetDate.fechaInicio = new Date.now();
+        console.log(updatedProjectStateAndSetDate.fechaInicio)
+      }
+      return updatedProjectStateAndSetDate;
     },
 
     deleteProject: async (parent, args) => {
@@ -104,13 +109,27 @@ const projectResolvers = {
           $set: {
             [`objetivos.${args.indexObjetivo}.descripcion`]:
               args.campos.descripcion,
-            [`objetivos.${args.indexObjetivo}.tipo`]:
-              args.campos.tipo,
+            [`objetivos.${args.indexObjetivo}.tipo`]: args.campos.tipo,
           },
         },
         { new: true }
       );
       return projectWithObjectiveUpdated;
+    },
+
+    deleteObjective: async (parent, args) => {
+      const projectWithObjectiveDeleted = await ProjectModel.findByIdAndUpdate(
+        { _id: args.idProyecto },
+        {
+          $pull: {
+            objetivos: {
+              _id: args.idObjetivo,
+            },
+          },
+        },
+        { new: true }
+      );
+      return projectWithObjectiveDeleted;
     },
 
     // ---------------------------------------------------------

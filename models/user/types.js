@@ -41,6 +41,11 @@ type Mutation {
       apellido: String!
       identificacion: String!
       correo: String!
+      password: String!
+    ): User
+
+    updateUserState(
+      _id: String!
       estado: Enum_EstadoUsuario!
     ): User
 

@@ -37,6 +37,7 @@ const registrationResolvers = {
         args._id,
         {
           estado: args.estado,
+          fechaIngreso: { type: Date, default: Date.now() }
           // fechaIngreso: (new Date()).toISOString().split("T")[0],
           //fechaFin:new Date().toISOString().split("T")[0]
         },

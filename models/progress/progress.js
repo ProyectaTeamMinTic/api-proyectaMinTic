@@ -1,14 +1,15 @@
 //IMPORTS
-import mongoose from 'mongoose';
-import { ProjectModel } from '../project/project.js';
-import { UserModel } from '../user/user.js';
+import mongoose from "mongoose";
+import { ProjectModel } from "../project/project.js";
+import { UserModel } from "../user/user.js";
 
 //DEFINICION VARIABLES
 
 const { Schema, model } = mongoose; //Deconstrucción. De la librería mongoose solo utilizaremos el esquema y el modelo
 
-//DEFINIR ESQUEMAS 
-const progressSchema = new Schema({  //const avanceSchema = new Schema({
+//DEFINIR ESQUEMAS
+const progressSchema = new Schema({
+  //const avanceSchema = new Schema({
   fecha: {
     type: Date,
     required: true,
@@ -17,9 +18,14 @@ const progressSchema = new Schema({  //const avanceSchema = new Schema({
     type: String,
     required: true,
   },
+  // observaciones: [
+  //   {
+  //     type: String,
+  //   },
+  // ],
   observaciones: [
     {
-      type: String,
+      descripcion: { type: String, required: true },
     },
   ],
   proyecto: {
@@ -34,9 +40,8 @@ const progressSchema = new Schema({  //const avanceSchema = new Schema({
   },
 });
 
+//DEFINIR MODELO DEL OBJETO
+const ProgressModel = model("Progres", progressSchema); //const ModeloAvance = model('Avance', avanceSchema);
 
-//DEFINIR MODELO DEL OBJETO 
-const ProgressModel = model('Progres', progressSchema); //const ModeloAvance = model('Avance', avanceSchema);
-
-//EXPORTACIÓN DEL MODELO 
+//EXPORTACIÓN DEL MODELO
 export { ProgressModel }; //export { ModeloAvance };
