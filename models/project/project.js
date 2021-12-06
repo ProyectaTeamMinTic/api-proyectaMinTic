@@ -17,11 +17,13 @@ const projectSchema = new Schema(
     },
     fechaInicio: {
       type: Date,
-      required: true,
+      // required: true,
+      default: ''
     },
     fechaFin: {
       type: Date,
-      required: true,
+      // required: true,
+      default: ''
     },
     estado: {
       type: String,
@@ -30,8 +32,8 @@ const projectSchema = new Schema(
     },
     fase: {
       type: String,
-      enum: ["INICIADO", "DESARROLLO", "TERMINADO", "NULA"],
-      default: "NULA",
+      enum: ["INICIADO", "DESARROLLO", "TERMINADO", "NULL"],
+      default: "NULL",
     },
     lider: {
       type: Schema.Types.ObjectId,

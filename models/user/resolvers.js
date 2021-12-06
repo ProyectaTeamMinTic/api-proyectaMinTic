@@ -45,6 +45,8 @@ const userResolvers = {
             return createdUser;
         },
         updateUser: async (parent, args) => {
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(args.password, salt);
             const updatedUser = await UserModel.findByIdAndUpdate(
                 args._id,
                 {
@@ -52,12 +54,25 @@ const userResolvers = {
                     apellido: args.apellido,
                     identificacion: args.identificacion,
                     correo: args.correo,
-                    estado: args.estado,
+                    // estado: args.estado,
+                    password: hashedPassword,
                 },
                 { new: true }
             );
             return updatedUser;
         },
+
+        updateUserState: async (parent, args) => {
+            const updatedUserState = await UserModel.findByIdAndUpdate(
+                args._id,
+                {
+                    estado: args.estado,
+                },
+                { new: true }
+            );
+            return updatedUserState;
+        },
+
         deleteUser: async (parent, args) => {
             if (Object.keys(args).includes('_id')) {
                 const deletedUser = await UserModel.findOneAndDelete({ _id: args._id });

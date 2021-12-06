@@ -37,10 +37,10 @@ const projectTypes = gql`
     _id: ID!
     nombre: String!
     presupuesto: Float!
-    fechaInicio: Date!
-    fechaFin: Date!
-    estado: Enum_EstadoProyecto!
-    fase: Enum_FaseProyecto!
+    fechaInicio: Date
+    fechaFin: Date
+    estado: Enum_EstadoProyecto
+    fase: Enum_FaseProyecto
     lider: User
     objetivos: [Objetivo]!
     avances: [Progress]
@@ -65,10 +65,10 @@ const projectTypes = gql`
     createProject(
       nombre: String!
       presupuesto: Float!
-      fechaInicio: Date!
-      fechaFin: Date!
-      estado: Enum_EstadoProyecto!
-      fase: Enum_FaseProyecto!
+      # fechaInicio: Date!
+      # fechaFin: Date!
+      # estado: Enum_EstadoProyecto!
+      # fase: Enum_FaseProyecto!
       lider: String! # Se asume que el usuario ya está creado
       objetivos: [crearObjetivo]
     ): Project
@@ -86,7 +86,7 @@ const projectTypes = gql`
     # ): Project
 
     updateProject(_id: String!, campos: camposProyecto!): Project
-
+    updateProjectStateAndSetDate(_id: String, campos: camposProyecto!): Project
     deleteProject(_id: String): Project
     # ---------------------------------------------------------
     createObjective(idProyecto: String!, campos: camposObjetivo!): Project
