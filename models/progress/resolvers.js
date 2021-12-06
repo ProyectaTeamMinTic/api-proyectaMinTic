@@ -61,18 +61,52 @@ const progressResolvers = {
     //HACE FALTA MUTACION PARA QUE EL LIDER PUEDA AGREGAR OBSERVACIONES A LOS AVANCES. (HU_18)
     //Para que esta operación solo pueda ser ejecutada por el líder uso PrivateComponent en el front
     createObservation: async (parent, args) => {
-      const progressWithObjective = await ProgressModel.findByIdAndUpdate(
-        args._Id,
+      const progressWithObservation = await ProgressModel.findByIdAndUpdate(
+        args.idAvance,
         {
           $addToSet: {
-            Observacion: {
+            observaciones: {
               descripcion: args.descripcion,
             },
           },
         },
         { new: true }
       );
-      return progressWithObjective;
+      return progressWithObservation;
+    },
+
+    updateObservation: async (parent, args) => {
+      const progressWithObservationUpdated =
+        await ProgressModel.findByIdAndUpdate(
+          args.idAvance,
+          {
+            $set: {
+              [`observaciones.${args.indexObservacion}.descripcion`]:
+                args.descripcion,
+            },
+          },
+          // console.log(args.idAvance),
+          // console.log(args.indexAvance),
+          // console.log(args.descripcion),
+          { new: true }
+        );
+      return progressWithObservationUpdated;
+    },
+
+    deleteObservation: async (parent, args) => {
+      const projectWithObservationDeleted =
+        await ProgressModel.findByIdAndUpdate(
+          { _id: args.idAvance },
+          {
+            $pull: {
+              observaciones: {
+                _id: args.idObservacion,
+              },
+            },
+          },
+          { new: true }
+        );
+      return projectWithObservationDeleted;
     },
   },
 };
