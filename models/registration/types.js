@@ -27,7 +27,7 @@ type Mutation {
     ): Registration
 
     approveRegistration(_id: String!
-    estado: Enum_EstadoInscripcion): Registration
+    estado: Enum_EstadoInscripcion!): Registration
   }
 `;
 

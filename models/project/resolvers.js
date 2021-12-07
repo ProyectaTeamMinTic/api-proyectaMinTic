@@ -1,11 +1,17 @@
 //IMPORTS
 import { ProjectModel } from "./project.js";
 import { registrationModel } from "../registration/registration.js";
+import { ProgressModel } from "../progress/progress.js"
 //RESOLVER{
 const projectResolvers = {
   Project: {
     inscripciones: async (parent, args) => {
       return registrationModel.find({ proyecto: parent._id });
+    },
+  },
+  Project: {
+    avances: async (parent, args) => {
+      return ProgressModel.find({ proyecto: parent._id });
     },
   },
   //  DEFINICION DE QUERIES
@@ -68,13 +74,14 @@ const projectResolvers = {
         args._id,
         {
           estado: args.estado,
+          fechaInicio: Date.now()
         },
         { new: true }
       );
-      if (Object.keys(args).includes('estado') === 'ACTIVO') {
-        updatedProjectStateAndSetDate.fechaInicio = new Date.now();
-        console.log(updatedProjectStateAndSetDate.fechaInicio)
-      }
+      // if (Object.keys(args).includes('estado') === 'ACTIVO') {
+      //   updatedProjectStateAndSetDate.fechaInicio = new Date.now();
+      //   console.log(updatedProjectStateAndSetDate.fechaInicio)
+      // }
       return updatedProjectStateAndSetDate;
     },
 
