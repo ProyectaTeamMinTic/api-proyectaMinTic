@@ -1,8 +1,14 @@
 //IMPORTS
+import { ProjectModel } from "../project/project.js";
 import { ProgressModel } from "./progress.js";
 
 //RESOLVER{
 const progressResolvers = {
+  // Progress: {
+  //   proyecto: async (parent, args) => {
+  //     return ProjectModel.find({ proyecto: parent.estado });
+  //   },
+  // },
   //  DEFINICION DE QUERY
   Query: {
     Progresses: async (parent, args) => {
@@ -28,8 +34,9 @@ const progressResolvers = {
   //  DEFINICIÓN DE MUTACIONES }
   Mutation: {
     createProgress: async (parents, args) => {
+      const fecha = new Date()
       const createdProgress = await ProgressModel.create({
-        fecha: args.fecha,
+        fecha: fecha.toISOString().split('T')[0],
         descripcion: args.descripcion,
         proyecto: args.proyecto,
         creadoPor: args.creadoPor,

@@ -22,6 +22,7 @@ const projectTypes = gql`
     tipo: Enum_TipoObjetivo!
   }
 
+
   input camposProyecto {
     nombre: String
     presupuesto: Float
@@ -46,7 +47,7 @@ const projectTypes = gql`
     avances: [Progress]
     inscripciones: [Registration]
   }
-
+  
   #DEFINICION DE QUERY
   type Query {
     # ---------------------------------------------------------

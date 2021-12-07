@@ -11,7 +11,7 @@ const { Schema, model } = mongoose; //Deconstrucción. De la librería mongoose 
 const progressSchema = new Schema({
   //const avanceSchema = new Schema({
   fecha: {
-    type: Date,
+    type: String,
     required: true,
   },
   descripcion: {

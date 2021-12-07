@@ -15,7 +15,7 @@ const progressTypes = gql`
 
   type Progress {
     _id: ID!
-    fecha: Date!
+    fecha: Date
     descripcion: String!
     # observaciones: [String]
     observaciones: [Observacion]!
@@ -34,7 +34,7 @@ const progressTypes = gql`
 
   type Mutation {
     createProgress(
-      fecha: Date!
+      # fecha: Date!
       descripcion: String!
       proyecto: String!
       creadoPor: String!
