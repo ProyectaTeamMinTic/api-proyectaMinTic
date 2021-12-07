@@ -65,24 +65,37 @@ const projectResolvers = {
         { ...args.campos },
         { new: true }
       );
+      // if (args.campos.fase === 'TERMINADO') {
+      //   args.campos.estado = 'INACTIVO';
+      //   args.campos.fechaFin = Date.now();
+      // }
       return updatedProject;
     },
 
     //mutacion para actualizar el estado del proyecto y establecer fechas automaticas
     updateProjectStateAndSetDate: async (parent, args) => {
-      const updatedProjectStateAndSetDate = await ProjectModel.findByIdAndUpdate(
-        args._id,
-        {
-          estado: args.estado,
-          fechaInicio: Date.now()
-        },
-        { new: true }
-      );
-      // if (Object.keys(args).includes('estado') === 'ACTIVO') {
-      //   updatedProjectStateAndSetDate.fechaInicio = new Date.now();
-      //   console.log(updatedProjectStateAndSetDate.fechaInicio)
-      // }
-      return updatedProjectStateAndSetDate;
+      if (args.campos.estado === 'ACTIVO') {
+        const updatedProjectStateAndSetDate = await ProjectModel.findByIdAndUpdate(
+          args._id,
+          {
+            ...args.campos,
+            fechaInicio: Date.now(),
+            fase: 'INICIADO'
+          },
+          { new: true }
+        );
+        return updatedProjectStateAndSetDate;
+      } else {
+        const updatedProjectStateAndSetDate = await ProjectModel.findByIdAndUpdate(
+          args._id,
+          {
+            ...args.campos,
+            fechaFin: Date.now(),
+          },
+          { new: true }
+        );
+        return updatedProjectStateAndSetDate;
+      }
     },
 
     deleteProject: async (parent, args) => {
