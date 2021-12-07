@@ -14,11 +14,11 @@ const registrationSchema = new Schema({
     default: "PENDIENTE",
   },
   fechaIngreso: {
-    type: Date,
+    type: String,
     required: false,
   },
   fechaEgreso: {
-    type: Date,
+    type: String,
     required: false,
   },
   proyecto: {

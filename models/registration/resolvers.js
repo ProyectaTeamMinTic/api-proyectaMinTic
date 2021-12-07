@@ -31,14 +31,12 @@ const registrationResolvers = {
     },
     approveRegistration: async (parent, args) => {
       if (args.estado === 'ACEPTADA') {
+        const fecha = new Date()
         const registrationApproved = await registrationModel.findByIdAndUpdate(
           args._id,
           {
             estado: args.estado,
-            fechaIngreso: Date.now()
-            // fechaIngreso: { type: Date, default: Date.now() }
-            // fechaIngreso: (new Date()).toISOString().split("T")[0],
-            //fechaFin:new Date().toISOString().split("T")[0]
+            fechaIngreso: fecha.toISOString().split('T')[0]
           },
           { new: true }
         );

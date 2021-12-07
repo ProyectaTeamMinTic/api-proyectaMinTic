@@ -42,10 +42,7 @@ const projectResolvers = {
       const createdProject = await ProjectModel.create({
         nombre: args.nombre,
         presupuesto: args.presupuesto,
-        // fechaInicio: args.fechaInicio,
-        // fechaFin: args.fechaFin,
-        // estado: args.estado,
-        // fase: args.fase,
+
         lider: args.lider,
         objetivos: args.objetivos,
       });
@@ -60,37 +57,51 @@ const projectResolvers = {
     },
 
     updateProject: async (parent, args) => {
-      const updatedProject = await ProjectModel.findByIdAndUpdate(
-        args._id,
-        { ...args.campos },
-        { new: true }
-      );
-      // if (args.campos.fase === 'TERMINADO') {
-      //   args.campos.estado = 'INACTIVO';
-      //   args.campos.fechaFin = Date.now();
-      // }
-      return updatedProject;
+      const fecha = new Date()
+      if (args.campos.fase === 'TERMINADO') {
+        const updatedProject = await ProjectModel.findByIdAndUpdate(
+          args._id,
+          {
+            ...args.campos,
+            estado: 'INACTIVO',
+            fechaFin: fecha.toISOString().split('T')[0]
+          },
+          { new: true }
+        );
+        return updatedProject;
+      } else {
+        const updatedProject = await ProjectModel.findByIdAndUpdate(
+          args._id,
+          {
+            ...args.campos,
+          },
+          { new: true }
+        );
+        return updatedProject;
+      }
     },
 
     //mutacion para actualizar el estado del proyecto y establecer fechas automaticas
     updateProjectStateAndSetDate: async (parent, args) => {
       if (args.campos.estado === 'ACTIVO') {
+        const fecha = new Date()
         const updatedProjectStateAndSetDate = await ProjectModel.findByIdAndUpdate(
           args._id,
           {
             ...args.campos,
-            fechaInicio: Date.now(),
+            fechaInicio: fecha.toISOString().split('T')[0],
             fase: 'INICIADO'
           },
           { new: true }
         );
         return updatedProjectStateAndSetDate;
-      } else {
+      } else if (args.campos.estado === 'INACTIVO') {
+        const fecha = new Date()
         const updatedProjectStateAndSetDate = await ProjectModel.findByIdAndUpdate(
           args._id,
           {
             ...args.campos,
-            fechaFin: Date.now(),
+            fechaFin: fecha.toISOString().split('T')[0],
           },
           { new: true }
         );

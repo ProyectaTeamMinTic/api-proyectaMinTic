@@ -86,7 +86,7 @@ const projectTypes = gql`
     # ): Project
 
     updateProject(_id: String!, campos: camposProyecto!): Project
-    updateProjectStateAndSetDate(_id: String, campos: camposProyecto!): Project
+    updateProjectStateAndSetDate(_id: String!, campos: camposProyecto!): Project
     deleteProject(_id: String): Project
     # ---------------------------------------------------------
     createObjective(idProyecto: String!, campos: camposObjetivo!): Project
