@@ -1,11 +1,17 @@
 //IMPORTS
 import { ProjectModel } from "./project.js";
 import { registrationModel } from "../registration/registration.js";
+import { ProgressModel } from "../progress/progress.js"
 //RESOLVER{
 const projectResolvers = {
   Project: {
     inscripciones: async (parent, args) => {
       return registrationModel.find({ proyecto: parent._id });
+    },
+  },
+  Project: {
+    avances: async (parent, args) => {
+      return ProgressModel.find({ proyecto: parent._id });
     },
   },
   //  DEFINICION DE QUERIES
@@ -59,23 +65,37 @@ const projectResolvers = {
         { ...args.campos },
         { new: true }
       );
+      // if (args.campos.fase === 'TERMINADO') {
+      //   args.campos.estado = 'INACTIVO';
+      //   args.campos.fechaFin = Date.now();
+      // }
       return updatedProject;
     },
 
     //mutacion para actualizar el estado del proyecto y establecer fechas automaticas
     updateProjectStateAndSetDate: async (parent, args) => {
-      const updatedProjectStateAndSetDate = await ProjectModel.findByIdAndUpdate(
-        args._id,
-        {
-          estado: args.estado,
-        },
-        { new: true }
-      );
-      if (Object.keys(args).includes('estado') === 'ACTIVO') {
-        updatedProjectStateAndSetDate.fechaInicio = new Date.now();
-        console.log(updatedProjectStateAndSetDate.fechaInicio)
+      if (args.campos.estado === 'ACTIVO') {
+        const updatedProjectStateAndSetDate = await ProjectModel.findByIdAndUpdate(
+          args._id,
+          {
+            ...args.campos,
+            fechaInicio: Date.now(),
+            fase: 'INICIADO'
+          },
+          { new: true }
+        );
+        return updatedProjectStateAndSetDate;
+      } else {
+        const updatedProjectStateAndSetDate = await ProjectModel.findByIdAndUpdate(
+          args._id,
+          {
+            ...args.campos,
+            fechaFin: Date.now(),
+          },
+          { new: true }
+        );
+        return updatedProjectStateAndSetDate;
       }
-      return updatedProjectStateAndSetDate;
     },
 
     deleteProject: async (parent, args) => {

@@ -33,18 +33,20 @@ const registrationResolvers = {
       return registrationCreated;
     },
     approveRegistration: async (parent, args) => {
-      const fecha = new Date(),
-      const registrationApproved = await registrationModel.findByIdAndUpdate(
-        args._id,
-        {
-          estado: args.estado,          
-          fechaIngreso: args.fechaIngreso=fecha.toISOString().split('T')[0],
-          // fechaIngreso: (new Date()).toISOString().split("T")[0],
-          //fechaFin:new Date().toISOString().split("T")[0]
-        },
-        { new: true }
-      );
-      return registrationApproved;
+      if (args.estado === "ACEPTADA") {
+        const registrationApproved = await registrationModel.findByIdAndUpdate(
+          args._id,
+          {
+            estado: args.estado,
+            fechaIngreso: Date.now(),
+            // fechaIngreso: { type: Date, default: Date.now() }
+            // fechaIngreso: (new Date()).toISOString().split("T")[0],
+            //fechaFin:new Date().toISOString().split("T")[0]
+          },
+          { new: true }
+        );
+        return registrationApproved;
+      }
     },
     //FECHA DE EGRESO CUANDO UN PROYECTO ESTA EN FASE DE TERMINADO, ADICIONAL
     // updateEndDateRegistration: async (parent, args) => {
