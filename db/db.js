@@ -12,4 +12,14 @@ const conectarBD = async () => {
     });
 };
 
+// const schema = new Schema({
+//   name: String
+// }, {
+//   writeConcern: {
+//      w: 'majority',
+//      j: true,
+//      wtimeout: 1000
+//   }
+// });
+
 export default conectarBD;
