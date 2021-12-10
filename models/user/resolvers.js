@@ -45,8 +45,8 @@ const userResolvers = {
             return createdUser;
         },
         updateUser: async (parent, args) => {
-            const salt = await bcrypt.genSalt(10);
-            const hashedPassword = await bcrypt.hash(args.password, salt);
+            //const salt = await bcrypt.genSalt(10);
+            //const hashedPassword = await bcrypt.hash(args.password, salt);
             const updatedUser = await UserModel.findByIdAndUpdate(
                 args._id,
                 {
