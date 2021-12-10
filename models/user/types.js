@@ -42,7 +42,7 @@ type Mutation {
       identificacion: String!
       correo: String!
       # estado: Enum_EstadoUsuario!
-      password: String
+      # password: String
     ): User
 
     updateUserState(

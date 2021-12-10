@@ -55,7 +55,7 @@ const userResolvers = {
                     identificacion: args.identificacion,
                     correo: args.correo,
                     // estado: args.estado,
-                    password: hashedPassword,
+                    // password: hashedPassword,
                 },
                 { new: true }
             );
