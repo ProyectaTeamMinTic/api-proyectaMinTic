@@ -37,11 +37,11 @@ type Mutation {
 
     updateUser(
       _id: String!
-      nombre: String!
-      apellido: String!
-      identificacion: String!
-      correo: String!
-      # estado: Enum_EstadoUsuario!
+      nombre: String
+      apellido: String
+      identificacion: String
+      correo: String
+      estado: Enum_EstadoUsuario
       # password: String
     ): User
 

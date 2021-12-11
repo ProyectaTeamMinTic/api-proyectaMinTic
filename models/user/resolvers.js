@@ -10,9 +10,16 @@ const userResolvers = {
     },
     //  DEFINICION DE QUERY
     Query: {
-        Users: async (parent, args) => {
-            const users = await UserModel.find()
-            return users;
+        Users: async (parent, args, context) => {
+            if (context.userData) {
+                if (context.userData.rol === 'LIDER') {
+                    const users = await UserModel.find({ rol: 'ESTUDIANTE' })
+                    return users;
+                } else if (context.userData.rol === 'ADMINISTRADOR') {
+                    const users = await UserModel.find()
+                    return users;
+                }
+            }
         },
         User: async (parent, args) => {
             //virtual populate para traer informacion de proyectos de un lider
@@ -54,7 +61,7 @@ const userResolvers = {
                     apellido: args.apellido,
                     identificacion: args.identificacion,
                     correo: args.correo,
-                    // estado: args.estado,
+                    estado: args.estado,
                     // password: hashedPassword,
                 },
                 { new: true }
