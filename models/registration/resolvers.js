@@ -1,9 +1,14 @@
 //IMPORTS
 import { registrationModel } from "./registration.js";
-
+import { ProjectModel } from "../project/project.js"
 //RESOLVER{
 
 const registrationResolvers = {
+  // Registration: {
+  //   proyecto: async (parent, args) => {
+  //     return ProjectModel.find({ nombre: parent.Project })
+  //   },
+  // },
   //  DEFINICION DE QUERY
   Query: {
     Registrations: async (parent, args) => {

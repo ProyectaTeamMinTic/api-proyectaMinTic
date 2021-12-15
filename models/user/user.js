@@ -28,11 +28,15 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
-    required: false,
+    required: true,
   },
   apellido: {
     type: String,
     required: true,
+  },
+  foto: {
+    type: String,
+    required: false,
   },
   rol: {
     type: String,

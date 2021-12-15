@@ -1,13 +1,15 @@
 //IMPORTS
 import { UserModel } from './user.js'
 import bcrypt from 'bcrypt';
+import { registrationModel } from "../registration/registration.js";
+
 //RESOLVER{
 const userResolvers = {
-    User: {
-        inscripciones: async (parent, args) => {
-            return registrationModel.find({ estado: parent.estado, proyecto: parent.Project, estudiante: parent.User })
-        },
-    },
+    // User: {
+    //     inscripciones: async (parent, args) => {
+    //         return registrationModel.find({ estado: parent.Registration, proyecto: parent.Project, estudiante: parent.User })
+    //     },
+    // },
     //  DEFINICION DE QUERY
     Query: {
         Users: async (parent, args, context) => {
@@ -23,7 +25,7 @@ const userResolvers = {
         },
         User: async (parent, args) => {
             //virtual populate para traer informacion de proyectos de un lider
-            const user = await UserModel.findOne({ _id: args._id }).populate('proyectos');
+            const user = await UserModel.findOne({ _id: args._id }).populate('proyectos').populate('inscripciones')
             return user;
         },
         // User: async (parent, args) => {
@@ -67,16 +69,9 @@ const userResolvers = {
         },
 
         updateUserProfile: async (parent, args) => {
-            const salt = await bcrypt.genSalt(10);
-            const hashedPassword = await bcrypt.hash(args.password, salt);
-            const updatedUser = await UserModel.findByIdAndUpdate(
+            const updatedUserProfile = await UserModel.findByIdAndUpdate(
                 args._id,
-                {
-                    nombre: args.nombre,
-                    apellido: args.apellido,
-                    correo: args.correo,
-                    password: hashedPassword,
-                },
+                { ...args.campos },
                 { new: true }
             );
             return updatedUserProfile;
