@@ -11,8 +11,9 @@ const registrationResolvers = {
   // },
   //  DEFINICION DE QUERY
   Query: {
+    //FALTA TRAER NOMBRE DE PROYECTOS
     Registrations: async (parent, args) => {
-      const registrations = await registrationModel.find();
+      const registrations = await registrationModel.find().populate('proyecto');
       return registrations;
     },
     inscripcionesConProyectoYEstudiante: async (parent, args) => {
