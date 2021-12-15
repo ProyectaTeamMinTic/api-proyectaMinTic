@@ -52,8 +52,6 @@ const userResolvers = {
             return createdUser;
         },
         updateUser: async (parent, args) => {
-            //const salt = await bcrypt.genSalt(10);
-            //const hashedPassword = await bcrypt.hash(args.password, salt);
             const updatedUser = await UserModel.findByIdAndUpdate(
                 args._id,
                 {
@@ -62,11 +60,26 @@ const userResolvers = {
                     identificacion: args.identificacion,
                     correo: args.correo,
                     estado: args.estado,
-                    // password: hashedPassword,
                 },
                 { new: true }
             );
             return updatedUser;
+        },
+
+        updateUserProfile: async (parent, args) => {
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(args.password, salt);
+            const updatedUser = await UserModel.findByIdAndUpdate(
+                args._id,
+                {
+                    nombre: args.nombre,
+                    apellido: args.apellido,
+                    correo: args.correo,
+                    password: hashedPassword,
+                },
+                { new: true }
+            );
+            return updatedUserProfile;
         },
 
         updateUserState: async (parent, args) => {
