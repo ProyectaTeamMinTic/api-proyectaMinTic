@@ -11,20 +11,11 @@ type User {
     correo: String!
     rol: Enum_Rol!
     estado: Enum_EstadoUsuario
-    foto: String
     # virtual populate para traer array de proyectos de un lider
     proyectos:[Project]
     #Virtual populate para traer las inscripciones de un usuario
     inscripciones:[Registration]
 }
-
-  input CamposEditarPerfil {
-    nombre: String
-    apellido: String
-    identificacion: String
-    password: String
-    foto: String
-  }
 
 #  DEFINICION DE QUERY
 type Query{
@@ -52,11 +43,6 @@ type Mutation {
       correo: String
       estado: Enum_EstadoUsuario
     ): User
-
-    updateUserProfile(
-      _id: String!
-      campos: CamposEditarPerfil!
-    ):User
 
     updateUserState(
       _id: String!

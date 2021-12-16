@@ -68,15 +68,6 @@ const userResolvers = {
             return updatedUser;
         },
 
-        updateUserProfile: async (parent, args) => {
-            const updatedUserProfile = await UserModel.findByIdAndUpdate(
-                args._id,
-                { ...args.campos },
-                { new: true }
-            );
-            return updatedUserProfile;
-        },
-
         updateUserState: async (parent, args) => {
             const updatedUserState = await UserModel.findByIdAndUpdate(
                 args._id,
