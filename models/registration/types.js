@@ -8,7 +8,7 @@ const registrationTypes = gql`
     estado: Enum_EstadoInscripcion!
     fechaIngreso: Date
     fechaEgreso: Date
-    proyecto: Project!
+    proyecto(lider: String): Project!
     estudiante: User!
   }
 

@@ -5,11 +5,11 @@ import { registrationModel } from "../registration/registration.js";
 
 //RESOLVER{
 const userResolvers = {
-    // User: {
-    //     inscripciones: async (parent, args) => {
-    //         return registrationModel.find({ estado: parent.Registration, proyecto: parent.Project, estudiante: parent.User })
-    //     },
-    // },
+    User: {
+        inscripciones: async (parent, args) => {
+            return registrationModel.find({ estado: parent.Registration, proyecto: parent.Project, estudiante: parent.User })
+        },
+    },
     //  DEFINICION DE QUERY
     Query: {
         Users: async (parent, args, context) => {

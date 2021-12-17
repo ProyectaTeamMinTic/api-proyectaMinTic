@@ -1,19 +1,35 @@
 //IMPORTS
 import { registrationModel } from "./registration.js";
-import { ProjectModel } from "../project/project.js"
+import { ProjectModel } from "../project/project.js";
+import { UserModel } from "../user/user.js";
 //RESOLVER{
 
 const registrationResolvers = {
-  // Registration: {
-  //   proyecto: async (parent, args) => {
-  //     return ProjectModel.find({ nombre: parent.Project })
-  //   },
-  // },
+  Registration: {
+    proyecto: async (parent, args) => {
+      return await ProjectModel.findOne({ _id: parent.proyecto })
+    },
+    estudiante: async (parent, args) => {
+      return await UserModel.findOne({ _id: parent.estudiante })
+    },
+  },
   //  DEFINICION DE QUERY
   Query: {
     //FALTA TRAER NOMBRE DE PROYECTOS
-    Registrations: async (parent, args) => {
-      const registrations = await registrationModel.find().populate('proyecto');
+    Registrations: async (parent, args, context) => {
+      let filtro = {};
+      if (context.userData) {
+        if (context.userData.rol === 'LIDER') {
+          const projects = await ProjectModel.find({ lider: context.userData._id });
+          const projectList = projects.map((p) => p._id.toString());
+          filtro = {
+            proyecto: {
+              $in: projectList,
+            },
+          };
+        }
+      }
+      const registrations = await registrationModel.find({ ...filtro });
       return registrations;
     },
     inscripcionesConProyectoYEstudiante: async (parent, args) => {
