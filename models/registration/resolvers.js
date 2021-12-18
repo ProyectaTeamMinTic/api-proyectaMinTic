@@ -32,14 +32,19 @@ const registrationResolvers = {
       const registrations = await registrationModel.find({ ...filtro });
       return registrations;
     },
-    inscripcionesConProyectoYEstudiante: async (parent, args) => {
-      const inscripcionesConProyectoYEstudiante = await registrationModel.find(
-        // {
-        //   estado: 'ACEPTADA'
-        // }
-      ).populate('estudiante').populate('proyecto');
-      return inscripcionesConProyectoYEstudiante;
+
+    Registration: async (parent, args) => {
+      const registration = await registrationModel.findByIdAndUpdate({ _id: args._id })
+      return registration;
     },
+    // inscripcionesConProyectoYEstudiante: async (parent, args) => {
+    //   const inscripcionesConProyectoYEstudiante = await registrationModel.find(
+    //     // {
+    //     //   estado: 'ACEPTADA'
+    //     // }
+    //   ).populate('estudiante').populate('proyecto');
+    //   return inscripcionesConProyectoYEstudiante;
+    // },
   },
   //  DEFINICIÓN DE MUTACIONES
   Mutation: {
@@ -59,6 +64,15 @@ const registrationResolvers = {
           {
             estado: args.estado,
             fechaIngreso: fecha.toISOString().split('T')[0]
+          },
+          { new: true }
+        );
+        return registrationApproved;
+      } else {
+        const registrationApproved = await registrationModel.findByIdAndUpdate(
+          args._id,
+          {
+            estado: args.estado,
           },
           { new: true }
         );

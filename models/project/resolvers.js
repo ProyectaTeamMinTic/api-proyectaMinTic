@@ -42,9 +42,12 @@ const projectResolvers = {
       const createdProject = await ProjectModel.create({
         nombre: args.nombre,
         presupuesto: args.presupuesto,
-
         lider: args.lider,
-        objetivos: args.objetivos,
+        objetivoGeneral: args.objetivoGeneral,
+        objetivoEspecifico1: args.objetivoEspecifico1,
+        objetivoEspecifico2: args.objetivoEspecifico2,
+        objetivoEspecifico3: args.objetivoEspecifico3,
+        // objetivos: args.objetivos,
       });
 
       if (Object.keys(args).includes("estado")) {
