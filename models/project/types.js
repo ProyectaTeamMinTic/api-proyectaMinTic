@@ -23,19 +23,19 @@ const projectTypes = gql`
   }
 
 
-  input camposProyecto {
+  input camposProyectoL {
     nombre: String
-    presupuesto: Float
-    fechaInicio: Date
-    fechaFin: Date
-    #fechaFin:new Date().toISOString().split("T")[0]
-    estado: Enum_EstadoProyecto
-    fase: Enum_FaseProyecto
-    lider: String
+    presupuesto: String  
     objetivoGeneral:String
     objetivoEspecifico1:String
     objetivoEspecifico2:String
     objetivoEspecifico3:String
+  }
+  input camposProyectoA {
+    fechaInicio: Date
+    fechaFin: Date
+    estado: Enum_EstadoProyecto
+    fase: Enum_FaseProyecto
   }
 
   type Project {
@@ -94,8 +94,13 @@ const projectTypes = gql`
     #   objetivos: [crearObjetivo]
     # ): Project
 
-    updateProject(_id: String!, campos: camposProyecto): Project
-    updateProjectStateAndSetDate(_id: String!, campos: camposProyecto!): Project
+    updateProject(
+      _id: String!, 
+      campos: camposProyectoL): Project
+
+    updateProjectStateAndSetDate(_id: String!, campos: camposProyectoA!): Project
+    updateProjectPhaseAndSetDate(_id: String!, campos: camposProyectoA!): Project
+
     deleteProject(_id: String): Project
     # ---------------------------------------------------------
     createObjective(idProyecto: String!, campos: camposObjetivo!): Project
