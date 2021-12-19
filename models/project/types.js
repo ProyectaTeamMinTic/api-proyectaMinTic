@@ -32,6 +32,10 @@ const projectTypes = gql`
     estado: Enum_EstadoProyecto
     fase: Enum_FaseProyecto
     lider: String
+    objetivoGeneral:String
+    objetivoEspecifico1:String
+    objetivoEspecifico2:String
+    objetivoEspecifico3:String
   }
 
   type Project {
@@ -90,7 +94,7 @@ const projectTypes = gql`
     #   objetivos: [crearObjetivo]
     # ): Project
 
-    updateProject(_id: String!, campos: camposProyecto!): Project
+    updateProject(_id: String!, campos: camposProyecto): Project
     updateProjectStateAndSetDate(_id: String!, campos: camposProyecto!): Project
     deleteProject(_id: String): Project
     # ---------------------------------------------------------
