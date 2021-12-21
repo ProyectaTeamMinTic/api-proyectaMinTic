@@ -5,17 +5,17 @@ import { UserModel } from "../user/user.js";
 //RESOLVER{
 
 const registrationResolvers = {
-  Registration: {
-    proyecto: async (parent, args) => {
-      return await ProjectModel.findOne({ _id: parent.proyecto })
-    },
-    estudiante: async (parent, args) => {
-      return await UserModel.findOne({ _id: parent.estudiante })
-    },
-    pro: async (parent, args) => {
-      return await ProjectModel.find({ _id: parent._id })
-    },
-  },
+  // Registration: {
+  // proyecto: async (parent, args) => {
+  //   return await ProjectModel.findOne({ _id: parent.proyecto })
+  // },
+  // estudiante: async (parent, args) => {
+  //   return await UserModel.findOne({ _id: parent.estudiante })
+  // },
+  // pro: async (parent, args) => {
+  //   return await ProjectModel.find({ _id: parent._id })
+  // },
+  // },
   //  DEFINICION DE QUERY
   Query: {
     //FALTA TRAER NOMBRE DE PROYECTOS
@@ -36,18 +36,18 @@ const registrationResolvers = {
       return registrations;
     },
 
-    Registration: async (parent, args) => {
-      const registration = await registrationModel.findOne({ _id: args._id }).populate('pro')
-      return registration;
-    },
-    // inscripcionesConProyectoYEstudiante: async (parent, args) => {
-    //   const inscripcionesConProyectoYEstudiante = await registrationModel.find(
-    //     // {
-    //     //   estado: 'ACEPTADA'
-    //     // }
-    //   ).populate('estudiante').populate('proyecto');
-    //   return inscripcionesConProyectoYEstudiante;
+    // Registration: async (parent, args) => {
+    //   const registration = await registrationModel.findOne({ _id: args._id })
+    //   return registration;
     // },
+    inscripcionesConProyectoYEstudiante: async (parent, args) => {
+      const inscripcionesConProyectoYEstudiante = await registrationModel.find(
+        // {
+        //   estado: 'ACEPTADA'
+        // }
+      ).populate('estudiante').populate('proyecto');
+      return inscripcionesConProyectoYEstudiante;
+    },
   },
   //  DEFINICIÓN DE MUTACIONES
   Mutation: {

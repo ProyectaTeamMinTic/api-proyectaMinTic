@@ -34,11 +34,11 @@ const registrationSchema = new Schema({
 });
 
 //Virtuals populate a proyectos
-registrationSchema.virtual("pro", {
-  ref: "Project",
-  localField: "_id",
-  foreignField: "inscripciones"
-});
+// registrationSchema.virtual("pro", {
+//   ref: "Project",
+//   localField: "_id",
+//   foreignField: "inscripciones"
+// });
 //DEFINIR MODELO DEL OBJETO
 const registrationModel = model("Registration", registrationSchema);
 

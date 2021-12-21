@@ -10,7 +10,6 @@ const registrationTypes = gql`
     fechaEgreso: Date
     proyecto(lider: String): Project!
     estudiante: User!
-    pro: Project!
   }
 
   type RegistrationE {
@@ -19,14 +18,14 @@ const registrationTypes = gql`
     fechaIngreso: Date
     fechaEgreso: Date
     estudiante: User!
-    pro: Project!
+    proyecto: Project!
   }
 
 #DEFINICION DE QUERY
 type Query {
     Registrations: [Registration]
-    Registration(_id: String!): RegistrationE
-    # inscripcionesConProyectoYEstudiante(estado: Enum_EstadoInscripcion): [Registration]
+    # Registration(_id: String!): Registration
+    inscripcionesConProyectoYEstudiante(estado: Enum_EstadoInscripcion): [RegistrationE]
   }
 
 #DEFINICION DE MUTACIONES
