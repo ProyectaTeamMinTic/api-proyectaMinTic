@@ -17,7 +17,7 @@ const progressTypes = gql`
     _id: ID!
     fecha: Date
     descripcion: String!
-    # observaciones: [String]
+    # observaciones: String!
     observaciones: [Observacion]!
     proyecto: Project!
     creadoPor: User!
