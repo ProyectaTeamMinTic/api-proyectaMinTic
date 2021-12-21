@@ -13,10 +13,19 @@ const registrationTypes = gql`
     pro: Project!
   }
 
+  type RegistrationE {
+    _id: String !
+    estado: Enum_EstadoInscripcion!
+    fechaIngreso: Date
+    fechaEgreso: Date
+    estudiante: User!
+    pro: Project!
+  }
+
 #DEFINICION DE QUERY
 type Query {
     Registrations: [Registration]
-    Registration(_id: String!): Registration
+    Registration(_id: String!): RegistrationE
     # inscripcionesConProyectoYEstudiante(estado: Enum_EstadoInscripcion): [Registration]
   }
 
