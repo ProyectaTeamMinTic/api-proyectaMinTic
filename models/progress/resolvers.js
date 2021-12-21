@@ -22,7 +22,7 @@ const progressResolvers = {
     Progress: async (parent, args) => {
       //???
       const progress = await ProgressModel.findById({
-        proyecto: args._id,
+        _id: args._id,
       })
         .populate("proyecto")
         .populate("creadoPor");
@@ -41,17 +41,23 @@ const progressResolvers = {
         proyecto: args.proyecto,
         creadoPor: args.creadoPor,
       });
-      return createdProgress;
+      // const updatedProjectPhase = await ProjectModel.findByIdAndUpdate(
+      //   proyecto._id,
+      //   {
+      //     ...args.campos,
+      //     fase: 'DESARROLLO',
+      //   },
+      //   { new: true }
+      // );
+      return createdProgress //updatedProjectPhase;
+
     },
 
     updateProgress: async (parents, args) => {
       const updatedProgress = await ProgressModel.findByIdAndUpdate(
         args._id,
         {
-          fecha: args.fecha, //FECHA AUTOMATICA
           descripcion: args.descripcion,
-          proyecto: args.proyecto,
-          creadoPor: args.creadoPor,
         },
         { new: true } //Para que el campo se actualice después de aplicar el findByIdAndUpdate (y en general todas las funciones de update)
       );

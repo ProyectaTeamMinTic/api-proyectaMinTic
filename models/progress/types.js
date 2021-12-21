@@ -41,11 +41,8 @@ const progressTypes = gql`
     ): Progress
 
     updateProgress(
-      _id: String!
-      fecha: Date!
+      _id: String!    
       descripcion: String!
-      proyecto: String!
-      creadoPor: String!
     ): Progress
 
     deleteProgress(_id: String): Progress

@@ -21,6 +21,7 @@ type User {
 type Query{
     Users: [User]
     User(_id: String!): User
+    UserS(_id: String!): User
 }
 
 # DEFINICION DE MUTACIONES

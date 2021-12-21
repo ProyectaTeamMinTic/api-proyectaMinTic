@@ -12,6 +12,9 @@ const registrationResolvers = {
     estudiante: async (parent, args) => {
       return await UserModel.findOne({ _id: parent.estudiante })
     },
+    pro: async (parent, args) => {
+      return await ProjectModel.find({ _id: parent._id })
+    },
   },
   //  DEFINICION DE QUERY
   Query: {
@@ -34,7 +37,7 @@ const registrationResolvers = {
     },
 
     Registration: async (parent, args) => {
-      const registration = await registrationModel.findByIdAndUpdate({ _id: args._id })
+      const registration = await registrationModel.findOne({ _id: args._id }).populate('pro')
       return registration;
     },
     // inscripcionesConProyectoYEstudiante: async (parent, args) => {
@@ -50,7 +53,6 @@ const registrationResolvers = {
   Mutation: {
     createRegistration: async (parent, args) => {
       const registrationCreated = await registrationModel.create({
-        // estado: args.estado,
         proyecto: args.proyecto,
         estudiante: args.estudiante,
       });

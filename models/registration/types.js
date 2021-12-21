@@ -10,6 +10,7 @@ const registrationTypes = gql`
     fechaEgreso: Date
     proyecto(lider: String): Project!
     estudiante: User!
+    pro: Project!
   }
 
 #DEFINICION DE QUERY

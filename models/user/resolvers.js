@@ -5,11 +5,11 @@ import { registrationModel } from "../registration/registration.js";
 
 //RESOLVER{
 const userResolvers = {
-    User: {
-        inscripciones: async (parent, args) => {
-            return registrationModel.find({ estado: parent.Registration, proyecto: parent.Project, estudiante: parent.User })
-        },
-    },
+    // User: {
+    //     inscripciones: async (parent, args) => {
+    //         return registrationModel.find({ proyecto: parent._id })
+    //     },
+    // },
     //  DEFINICION DE QUERY
     Query: {
         Users: async (parent, args, context) => {
@@ -28,11 +28,6 @@ const userResolvers = {
             const user = await UserModel.findOne({ _id: args._id }).populate('proyectos').populate('inscripciones')
             return user;
         },
-        // User: async (parent, args) => {
-        //     //virtual populate para traer informacion de proyectos de un lider
-        //     const user = await UserModel.findOne({ _id: args._id }).populate('inscripciones');
-        //     return user;
-        // },
     },
     //  DEFINICIÓN DE MUTACIONES 
     Mutation: {
