@@ -24,7 +24,7 @@ const registrationTypes = gql`
 #DEFINICION DE QUERY
 type Query {
     Registrations: [Registration]
-    # Registration(_id: String!): Registration
+    Registration(_id: String!): Registration
     inscripcionesConProyectoYEstudiante(estado: Enum_EstadoInscripcion): [RegistrationE]
   }
 
