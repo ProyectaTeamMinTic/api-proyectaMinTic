@@ -12,7 +12,7 @@ const progressResolvers = {
   //  DEFINICION DE QUERY
   Query: {
     Progresses: async (parent, args) => {
-      //????
+      //???
       const progresses = await ProgressModel.find()
         .populate("proyecto")
         .populate("creadoPor");
